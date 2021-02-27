@@ -8,5 +8,8 @@ public class MySecondProgram {
     Point p2 = new Point(4.0,5.0);
 
     System.out.println( "Расстояние между точками = " + p1.distance(p2) );
+
+
+
   }
 }
