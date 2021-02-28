@@ -37,7 +37,10 @@ public class PointTests {
 
     System.out.println(moduleY);
 
-    Assert.assertEquals(moduleY,1.0);
+    double d = p1.distance(p2);
+    System.out.println(d);
+
+    Assert.assertEquals(moduleY,d);
 
 
   }
@@ -57,7 +60,10 @@ public class PointTests {
 
     System.out.println(moudleX);
 
-    Assert.assertEquals(moudleX,1.0);
+    double d = p1.distance(p2);
+    System.out.println(d);
+
+    Assert.assertEquals(moudleX,d);
 
 
   }
