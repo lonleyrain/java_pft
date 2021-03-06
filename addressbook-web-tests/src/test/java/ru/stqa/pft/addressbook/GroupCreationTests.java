@@ -39,15 +39,14 @@ public class GroupCreationTests {
     fillGroupForm(new GroupData("test1", "test2", "test3"));
     submitGroupCreationForm();
     returnToGroupPage();
-    //wd.findElement(By.linkText("Logout")).click();
   }
 
-  private void returnToGroupPage() {
-    wd.findElement(By.linkText("group page")).click();
+  private void goToGroupPage() {
+    wd.findElement(By.linkText("groups")).click();
   }
 
-  private void submitGroupCreationForm() {
-    wd.findElement(By.name("submit")).click();
+  private void initGroupCreation() {
+    wd.findElement(By.name("new")).click();
   }
 
   private void fillGroupForm(GroupData groupData) {
@@ -62,12 +61,12 @@ public class GroupCreationTests {
     wd.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
   }
 
-  private void initGroupCreation() {
-    wd.findElement(By.name("new")).click();
+  private void submitGroupCreationForm() {
+    wd.findElement(By.name("submit")).click();
   }
 
-  private void goToGroupPage() {
-    wd.findElement(By.linkText("groups")).click();
+  private void returnToGroupPage() {
+    wd.findElement(By.linkText("group page")).click();
   }
 
   @AfterMethod(alwaysRun = true)
