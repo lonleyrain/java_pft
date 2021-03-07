@@ -13,34 +13,32 @@ public class ContactHelper {
   }
 
   public void initNewContactCreation() {
-    click(By.linkText("add new"));
+    wd.findElement(By.linkText("add new")).click();
   }
 
   public void fillContactForm(ContactData contactData) {
-    type(By.name("firstname"), contactData.getFirst_name());
-    type(By.name("lastname"), contactData.getLast_name());
-    type(By.name("mobile"), contactData.getPhone_number());
-    type(By.name("email"), contactData.getEmail());
-    click(By.name("new_group"));
+    wd.findElement(By.name("firstname")).click();
+    wd.findElement(By.name("firstname")).clear();
+    wd.findElement(By.name("firstname")).sendKeys(contactData.getFirst_name());
+    wd.findElement(By.name("lastname")).click();
+    wd.findElement(By.name("lastname")).clear();
+    wd.findElement(By.name("lastname")).sendKeys(contactData.getLast_name());
+    wd.findElement(By.name("mobile")).click();
+    wd.findElement(By.name("mobile")).clear();
+    wd.findElement(By.name("mobile")).sendKeys(contactData.getPhone_number());
+    wd.findElement(By.name("email")).click();
+    wd.findElement(By.name("email")).clear();
+    wd.findElement(By.name("email")).sendKeys(contactData.getEmail());
+    wd.findElement(By.name("new_group")).click();
     new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup_name());
     wd.findElement(By.name("new_group")).click();
   }
 
-  private void type(By locator, String text) {
-    wd.findElement(locator).click();
-    wd.findElement(locator).clear();
-    wd.findElement(locator).sendKeys(text);
-  }
-
-  public void submitContactForm(By locator) {
-    click(locator);
-  }
-
-  private void click(By locator) {
-    wd.findElement(locator).click();
+  public void submitContactForm() {
+    wd.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
   }
 
   public void returnToHomePage() {
-    click(By.linkText("home page"));
+    wd.findElement(By.linkText("home page")).click();
   }
 }
