@@ -1,10 +1,7 @@
 package ru.stqa.pft.addressbook.tests;
-import java.util.concurrent.TimeUnit;
+
 
 import org.testng.annotations.*;
-import org.openqa.selenium.*;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.Select;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 public class ContactCreationTests extends TestBase {
@@ -17,6 +14,5 @@ public class ContactCreationTests extends TestBase {
     submitContactForm();
     returnToHomePage();
   }
-
 
 }
