@@ -6,7 +6,11 @@ import org.openqa.selenium.support.ui.Select;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 public class ContactHelper {
-  WebDriver wd;
+  private WebDriver wd;
+
+  public ContactHelper(WebDriver wd) {
+    this.wd = wd;
+  }
 
   public void initNewContactCreation() {
     wd.findElement(By.linkText("add new")).click();
