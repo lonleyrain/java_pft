@@ -1,37 +1,35 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.Select;
-import ru.stqa.pft.addressbook.model.ContactData;
 
 import java.util.concurrent.TimeUnit;
 
-public class ApplicationManager extends ContactHelper {
+public class ApplicationManager {
 
+  private final ContactHelper contactHelper = new ContactHelper();
   private NavigationHelper navigationHelper;
   private  GroupHelper groupHelper ;
   private SessionHelper sessionHelper;
 
   public void init() {
-    wd = new FirefoxDriver();
-    wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-    wd.get("http://localhost/addressbook/");
-    groupHelper = new GroupHelper(wd);
-    navigationHelper = new NavigationHelper(wd);
-    sessionHelper = new SessionHelper(wd);
+    contactHelper.wd = new FirefoxDriver();
+    contactHelper.wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    contactHelper.wd.get("http://localhost/addressbook/");
+    groupHelper = new GroupHelper(contactHelper.wd);
+    navigationHelper = new NavigationHelper(contactHelper.wd);
+    sessionHelper = new SessionHelper(contactHelper.wd);
     sessionHelper.login("admin", "secret");
   }
 
 
   public void stop() {
     doLogout();
-    wd.quit();
+    contactHelper.wd.quit();
   }
 
   private void doLogout() {
-    wd.findElement(By.linkText("Logout")).click();
+    contactHelper.wd.findElement(By.linkText("Logout")).click();
   }
 
   public GroupHelper getGroupHelper() {
@@ -42,4 +40,7 @@ public class ApplicationManager extends ContactHelper {
     return navigationHelper;
   }
 
+  public ContactHelper getContactHelper() {
+    return contactHelper;
+  }
 }
