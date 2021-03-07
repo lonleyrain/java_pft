@@ -28,13 +28,10 @@ public class ApplicationManager {
 
 
   public void stop() {
-    doLogout();
+    sessionHelper.doLogout();
     wd.quit();
   }
 
-  private void doLogout() {
-    wd.findElement(By.linkText("Logout")).click();
-  }
 
   public GroupHelper getGroupHelper() {
     return groupHelper;
