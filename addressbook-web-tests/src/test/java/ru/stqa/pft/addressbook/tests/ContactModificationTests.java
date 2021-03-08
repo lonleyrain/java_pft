@@ -10,7 +10,9 @@ public class ContactModificationTests extends TestBase {
   public void testContactModification() throws Exception{
 
     app.getContactHelper().initContactModification();
-    app.getContactHelper().fillContactForm(new ContactData("First name", "Last name", "+375290000000", "dummyemail@gmail.com", "test1"));
+    //app.getContactHelper().fillContactForm(new ContactData("First name", "Last name", "+375290000000", "dummyemail@gmail.com", "test1"));
+    app.getContactHelper().submitContactModification();
+    app.getContactHelper().returnToHomePage();
 
 
   }
