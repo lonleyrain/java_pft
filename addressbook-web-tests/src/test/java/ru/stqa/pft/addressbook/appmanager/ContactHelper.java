@@ -13,32 +13,38 @@ public class ContactHelper {
   }
 
   public void initNewContactCreation() {
-    wd.findElement(By.linkText("add new")).click();
+    click(By.linkText("add new"));
   }
 
   public void fillContactForm(ContactData contactData) {
-    wd.findElement(By.name("firstname")).click();
-    wd.findElement(By.name("firstname")).clear();
-    wd.findElement(By.name("firstname")).sendKeys(contactData.getFirst_name());
-    wd.findElement(By.name("lastname")).click();
-    wd.findElement(By.name("lastname")).clear();
-    wd.findElement(By.name("lastname")).sendKeys(contactData.getLast_name());
-    wd.findElement(By.name("mobile")).click();
-    wd.findElement(By.name("mobile")).clear();
-    wd.findElement(By.name("mobile")).sendKeys(contactData.getPhone_number());
-    wd.findElement(By.name("email")).click();
-    wd.findElement(By.name("email")).clear();
-    wd.findElement(By.name("email")).sendKeys(contactData.getEmail());
-    wd.findElement(By.name("new_group")).click();
-    new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup_name());
-    wd.findElement(By.name("new_group")).click();
+    type(By.name("firstname"), contactData.getFirst_name());
+    type(By.name("lastname"), contactData.getLast_name());
+    type(By.name("mobile"), contactData.getPhone_number());
+    type(By.name("email"), contactData.getEmail());
+    selectdropdown(By.name("new_group"), contactData.getGroup_name());
+  }
+
+  private void selectdropdown(By locator, String text) {
+    click(locator);
+    new Select(wd.findElement(locator)).selectByVisibleText(text);
+    click(locator);
+  }
+
+  private void type(By locator, String text) {
+    click(locator);
+    wd.findElement(locator).clear();
+    wd.findElement(locator).sendKeys(text);
   }
 
   public void submitContactForm() {
-    wd.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
+    click(By.xpath("(//input[@name='submit'])[2]"));
+  }
+
+  private void click(By locator) {
+    wd.findElement(locator).click();
   }
 
   public void returnToHomePage() {
-    wd.findElement(By.linkText("home page")).click();
+    click(By.linkText("home page"));
   }
 }

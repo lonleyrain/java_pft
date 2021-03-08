@@ -2,8 +2,6 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import ru.stqa.pft.addressbook.model.GroupData;
-import ru.stqa.pft.addressbook.model.ContactData;
 
 import java.util.concurrent.TimeUnit;
 

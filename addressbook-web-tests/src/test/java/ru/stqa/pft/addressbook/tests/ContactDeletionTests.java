@@ -1,28 +1,28 @@
-package com.example.tests;
+package ru.stqa.pft.addressbook.tests;
 
-import java.util.regex.Pattern;
-import java.util.concurrent.TimeUnit;
-import org.testng.annotations.*;
-import static org.testng.Assert.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-public class ContactDeletionTests2 {
+import java.util.concurrent.TimeUnit;
+
+import static org.testng.Assert.assertTrue;
+
+public class ContactDeletionTests {
   private WebDriver driver;
-  private String baseUrl;
   private boolean acceptNextAlert = true;
-  private StringBuffer verificationErrors = new StringBuffer();
 
-  @BeforeClass(alwaysRun = true)
+
+  @BeforeMethod(alwaysRun = true)
   public void setUp() throws Exception {
     driver = new FirefoxDriver();
-    baseUrl = "https://www.google.com/";
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
   }
 
   @Test
-  public void testContactDeletionTests2() throws Exception {
+  public void testContactDeletion() throws Exception {
     driver.get("http://localhost/addressbook/");
     driver.findElement(By.name("user")).click();
     driver.findElement(By.name("user")).clear();
@@ -37,13 +37,9 @@ public class ContactDeletionTests2 {
     assertTrue(closeAlertAndGetItsText().matches("^Delete 1 addresses[\\s\\S]$"));
   }
 
-  @AfterClass(alwaysRun = true)
+  @AfterMethod(alwaysRun = true)
   public void tearDown() throws Exception {
     driver.quit();
-    String verificationErrorString = verificationErrors.toString();
-    if (!"".equals(verificationErrorString)) {
-      fail(verificationErrorString);
-    }
   }
 
   private boolean isElementPresent(By by) {
