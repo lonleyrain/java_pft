@@ -19,7 +19,7 @@ public class ContactHelper extends HelperBase {
     type(By.name("lastname"), contactData.getLast_name());
     type(By.name("mobile"), contactData.getPhone_number());
     type(By.name("email"), contactData.getEmail());
-    selectdropdown(By.name("new_group"), contactData.getGroup_name());
+    //selectdropdown(By.name("new_group"), contactData.getGroup_name());
   }
 
   public void submitContactForm() {
