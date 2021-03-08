@@ -43,10 +43,11 @@ public class ContactHelper extends HelperBase {
   }
 
   public void selectContactCheckbox() {
-    click(By.id("11"));
+    click(By.xpath("(//input[@type='checkbox'])[1]"));
   }
 
   public void deleteContactMainPage() {
-    click(By.xpath("(//input[@value='Delete']"));
+    click(By.xpath("//input[@value='Delete']"));
+
   }
 }

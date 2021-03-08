@@ -13,6 +13,7 @@ public class ContactDeletionTests extends TestBase {
 
     app.getContactHelper().selectContactCheckbox();
     app.getContactHelper().deleteContactMainPage();
+    app.getContactHelper().closeAlert();
 
   }
 
