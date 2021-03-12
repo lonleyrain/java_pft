@@ -25,4 +25,8 @@ public class Equation {
       }
     }
   }
+
+  public int rootNumber(){
+    return n;
+  }
 }
