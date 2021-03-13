@@ -35,5 +35,36 @@ public class EquationTests {
 
   }
 
+  // тесты для ситуации , когда уравнение линейно
+
+  @Test
+  public void testLinear(){
+
+    Equation e = new Equation(0,1,1);
+    Assert.assertEquals(e.rootNumber(), 1);
+
+  }
+
+
+  // тесты для ситуации , когда уравнение вырождается в константу
+
+  @Test
+  public void testConstant(){
+
+    Equation e = new Equation(0,0,1);
+    Assert.assertEquals(e.rootNumber(), 0);
+
+  }
+
+  // тесты для ситуации , когда все переменные нули
+
+  @Test
+  public void testZero(){
+
+    Equation e = new Equation(0,0,0);
+    Assert.assertEquals(e.rootNumber(), -1);
+
+  }
+
 
 }
