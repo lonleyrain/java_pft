@@ -6,6 +6,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
@@ -36,7 +37,7 @@ public class ApplicationManager {
 
 
 
-    wd.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+    wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
     wd.get("http://localhost/addressbook/");
     contactHelper = new ContactHelper(wd);
     groupHelper = new GroupHelper(wd);
