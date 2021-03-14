@@ -47,8 +47,6 @@ public class ContactHelper extends HelperBase {
   }
 
   public void selectContactCheckbox() {
-    //click(By.xpath("(//input[@type='checkbox'])[1]"));
-    //click(By.xpath("(//input[@name='selected[]'])"));
     click(By.name("selected[]"));
   }
 
@@ -59,9 +57,12 @@ public class ContactHelper extends HelperBase {
 
   public void createContact(ContactData contact) {
     initNewContactCreation();
-    fillContactForm(contact,true);
+    fillContactForm(contact, true);
     submitContactForm();
+    goToHomePage();
+
   }
+
 
   public boolean isContactPresent() {
     //return isElementPresent(By.xpath("(//input[@name='selected[]'])"));

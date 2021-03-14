@@ -71,5 +71,8 @@ public class HelperBase {
 
   }
 
+  protected void goToHomePage() {
+    click(By.linkText("home page"));
+  }
 }
 
