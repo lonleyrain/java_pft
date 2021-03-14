@@ -20,6 +20,7 @@ public class HelperBase {
     click(locator);
   }
 
+
   protected void type(By locator, String text) {
     click(locator);
     if (text != null) {
@@ -51,13 +52,23 @@ public class HelperBase {
     }
   }
 
-  private boolean isElementPresent(By by) {
+  /*private boolean isElementPresent(By by) {
     try {
       wd.findElement(by);
       return true;
     } catch (NoSuchElementException e) {
       return false;
     }
+  }*/
+
+  protected boolean isElementPresent(By locator){
+    try {
+      wd.findElement(locator);
+      return true;
+    } catch (NoSuchElementException exception) {
+      return false;
+    }
+
   }
 }
 

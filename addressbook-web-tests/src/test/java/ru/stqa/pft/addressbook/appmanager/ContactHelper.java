@@ -1,7 +1,9 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 public class ContactHelper extends HelperBase {
@@ -19,7 +21,10 @@ public class ContactHelper extends HelperBase {
     type(By.name("lastname"), contactData.getLast_name());
     type(By.name("mobile"), contactData.getPhone_number());
     type(By.name("email"), contactData.getEmail());
-    //selectdropdown(By.name("new_group"), contactData.getGroup_name());
+
+    if (isElementPresent(By.name("new_group"))) {
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup_name());
+    }
   }
 
   public void submitContactForm() {
