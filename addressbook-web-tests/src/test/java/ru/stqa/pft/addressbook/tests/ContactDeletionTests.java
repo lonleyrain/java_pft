@@ -9,7 +9,7 @@ public class ContactDeletionTests extends TestBase {
 
   public void testContactDeletion() throws Exception {
 
-    app.getNavigationHelper().returnToHomePage();
+    app.getNavigationHelper().goToHomePage();
     if (! app.getContactHelper().isContactPresent()) {
       app.getContactHelper().createContact(new ContactData("First name", "Last name", "+375290000000", "dummyemail@gmail.com", "test1"));
     }
