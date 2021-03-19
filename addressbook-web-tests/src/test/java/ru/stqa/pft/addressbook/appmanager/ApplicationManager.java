@@ -7,7 +7,6 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
 
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
 
