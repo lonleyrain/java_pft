@@ -46,8 +46,9 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("(//input[@name='update'])[2]"));
   }
 
-  public void selectContactCheckbox() {
-    click(By.name("selected[]"));
+  public void selectContactCheckbox(int index) {
+
+    wd.findElements(By.name("selected[]")).get(index).click();
   }
 
   public void deleteContactMainPage() {

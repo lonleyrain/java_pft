@@ -15,7 +15,7 @@ public class ContactDeletionTests extends TestBase {
     if (! app.getContactHelper().isContactPresent()) {
       app.getContactHelper().createContact(new ContactData("First name", "Last name", "+375290000000", "dummyemail@gmail.com", "test1"));
     }
-    app.getContactHelper().selectContactCheckbox();
+    app.getContactHelper().selectContactCheckbox(before - 1);
     app.getContactHelper().deleteContactMainPage();
     app.getContactHelper().closeAlert();
     int after = app.getContactHelper().getContactCount(); // количество контактов после удаления контакта
