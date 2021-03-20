@@ -4,6 +4,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 
+import java.util.List;
+
 public class ContactModificationTests extends TestBase {
 
   @Test
@@ -13,16 +15,17 @@ public class ContactModificationTests extends TestBase {
     if (! app.getContactHelper().isContactPresent()) {
       app.getContactHelper().createContact(new ContactData("First name", "Last name", "+375290000000", "dummyemail@gmail.com", "test1"));
     }
-    int before = app.getContactHelper().getContactCount(); // количество контактов до модификации контакта
 
-    app.getContactHelper().initContactModification(before - 1);
+    List<ContactData> before = app.getContactHelper().getContactList(); // список контактов до изменения контакта
+
+    app.getContactHelper().initContactModification(before.size());
     app.getContactHelper().fillContactForm(new ContactData("First name", "Last name", "+375290000000", "dummyemail@gmail.com", null), false);
     app.getContactHelper().submitContactModification();
     app.getNavigationHelper().goToHomePage();
 
-    int after = app.getContactHelper().getContactCount(); // количество контактов после модификации контакта
+    List<ContactData> after = app.getContactHelper().getContactList(); // список контактов после изменения контакта
 
-    Assert.assertEquals(after, before);
+    Assert.assertEquals(after.size(), before.size());
 
 
   }
