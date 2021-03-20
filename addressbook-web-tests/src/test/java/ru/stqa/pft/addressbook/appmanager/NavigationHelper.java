@@ -12,7 +12,7 @@ public class NavigationHelper extends HelperBase {
   public void goToGroupPage() {
 
     if (isElementPresent(By.tagName("h1"))
-            &&  wd.findElement(By.tagName("h1")).getText().equals("Groups")
+            &&  wd.findElement(By.tagName("h1")).getText().equals("groups")
             &&  isElementPresent(By.name("new"))) {
       return;
     }
@@ -23,10 +23,17 @@ public class NavigationHelper extends HelperBase {
 
   public void goToHomePage() {
 
-    if (isElementPresent(By.id("maintable"))) {
+    if (isElementPresent(By.tagName("h1"))
+            &&  wd.findElement(By.tagName("h1")).getText().equals("home")) {
       return;
-    }
-    click(By.linkText("home page"));
+  }
+
+    //div[@id='nav']/ul[1]/li[1]/a[1]    By.id("maintable")
+
+   // if (isElementPresent(By.id("maintable"))) {
+    //  return;
+   // }
+    click(By.linkText("home"));
   }
 }
 

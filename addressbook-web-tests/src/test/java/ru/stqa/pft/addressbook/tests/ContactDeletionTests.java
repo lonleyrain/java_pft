@@ -1,5 +1,6 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.apache.tools.ant.taskdefs.Sleep;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
@@ -21,6 +22,9 @@ public class ContactDeletionTests extends TestBase {
     app.getContactHelper().selectContactCheckbox(before.size() - 1);
     app.getContactHelper().deleteContactMainPage();
     app.getContactHelper().closeAlert();
+
+    app.getNavigationHelper().goToHomePage();
+
     List<ContactData> after = app.getContactHelper().getContactList(); // список контактов после удаления  контакта
 
     Assert.assertEquals(after.size(), before.size() - 1);

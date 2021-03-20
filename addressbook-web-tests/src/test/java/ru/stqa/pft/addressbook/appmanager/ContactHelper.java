@@ -86,14 +86,18 @@ public class ContactHelper extends HelperBase {
     List<WebElement> elements = wd.findElements(By.xpath(".//*[@id='maintable']/tbody/tr"));
     for (WebElement element : elements) {
 
-      String first_name = wd.findElement(By.xpath("//tr[2]/td[3]")).getText();
-      String last_name = wd.findElement(By.xpath("//tr[2]/td[2]")).getText();
-      String phone_number = wd.findElement(By.xpath("//tr[2]/td[5]")).getText();
+      //String first_name = wd.findElement(By.xpath("//tr[2]/td[3]")).getText();
+      String first_name = wd.findElement(By.xpath("//th[@class='sortable fd-column-2']")).getText();
+      //String last_name = wd.findElement(By.xpath("//tr[2]/td[2]")).getText();
+      String last_name = wd.findElement(By.xpath("//th[@class='sortable fd-column-1']")).getText();
+      //String phone_number = wd.findElement(By.xpath("//tr[2]/td[5]")).getText();
+      String phone_number = wd.findElement(By.xpath("//th[@class='sortable fd-column-5']")).getText();
 
       ContactData contact = new ContactData(first_name, last_name, phone_number, null, null);
       contacts.add(contact);
-      contacts.remove(0);
+
     }
+    contacts.remove(0);
 
 
     return contacts;
