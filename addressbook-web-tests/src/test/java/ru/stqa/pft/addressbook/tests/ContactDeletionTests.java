@@ -13,7 +13,7 @@ public class ContactDeletionTests extends TestBase {
 
   public void testContactDeletion() throws Exception {
 
-    app.getNavigationHelper().goToHomePage();
+    app.getNavigationHelper().goToHomePageInHeader();
     if (! app.getContactHelper().isContactPresent()) {
       app.getContactHelper().createContact(new ContactData("First name", "Last name", "+375290000000", "dummyemail@gmail.com", "test1"));
     }
@@ -23,7 +23,7 @@ public class ContactDeletionTests extends TestBase {
     app.getContactHelper().deleteContactMainPage();
     app.getContactHelper().closeAlert();
 
-    app.getNavigationHelper().goToHomePage();
+    app.getNavigationHelper().goToHomePageInHeader();
 
     List<ContactData> after = app.getContactHelper().getContactList(); // список контактов после удаления  контакта
 

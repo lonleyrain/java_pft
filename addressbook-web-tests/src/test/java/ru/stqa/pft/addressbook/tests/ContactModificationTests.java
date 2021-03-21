@@ -21,7 +21,7 @@ public class ContactModificationTests extends TestBase {
     app.getContactHelper().initContactModification(before.size() - 1);
     app.getContactHelper().fillContactForm(new ContactData("First name", "Last name", "+375290000000", "dummyemail@gmail.com", null), false);
     app.getContactHelper().submitContactModification();
-    app.getNavigationHelper().goToHomePage();
+    app.getNavigationHelper().goToHomePageInHeader();
 
     List<ContactData> after = app.getContactHelper().getContactList(); // список контактов после изменения контакта
 

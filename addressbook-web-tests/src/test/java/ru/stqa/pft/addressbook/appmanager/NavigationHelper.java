@@ -21,13 +21,12 @@ public class NavigationHelper extends HelperBase {
 
   }
 
-  public void goToHomePage() {
+  public void goToHomePageInHeader() {
 
     if (isElementPresent(By.tagName("h1"))
             &&  wd.findElement(By.tagName("h1")).getText().equals("home")) {
       return;
-  }
-
+    }
     //div[@id='nav']/ul[1]/li[1]/a[1]    By.id("maintable")
 
    // if (isElementPresent(By.id("maintable"))) {
