@@ -27,11 +27,7 @@ public class NavigationHelper extends HelperBase {
             &&  wd.findElement(By.tagName("h1")).getText().equals("home")) {
       return;
     }
-    //div[@id='nav']/ul[1]/li[1]/a[1]    By.id("maintable")
 
-   // if (isElementPresent(By.id("maintable"))) {
-    //  return;
-   // }
     click(By.linkText("home"));
   }
 }
@@ -39,3 +35,9 @@ public class NavigationHelper extends HelperBase {
 /*&& означаеет "и" в моменте перечисления условий
 * || означает "или"
 * */
+
+//div[@id='nav']/ul[1]/li[1]/a[1]    By.id("maintable")
+
+// if (isElementPresent(By.id("maintable"))) {
+//  return;
+// }
