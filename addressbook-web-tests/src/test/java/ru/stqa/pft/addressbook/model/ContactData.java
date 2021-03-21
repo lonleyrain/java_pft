@@ -41,6 +41,17 @@ public class ContactData {
     return id;
   }
 
+  public ContactData(String first_name, String last_name, String phone_number, String email, String group_name) {
+    this.id = null;
+    this.first_name = first_name;
+    this.last_name = last_name;
+    this.phone_number = phone_number;
+    this.email = email;
+    this.group_name = group_name;
+
+  }
+
+
   public ContactData(String id, String first_name, String last_name, String phone_number, String email, String group_name) {
     this.id = id;
     this.first_name = first_name;

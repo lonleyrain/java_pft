@@ -72,7 +72,7 @@ public class ContactHelper extends HelperBase {
 
     //wd.findElement(By.linkText("home page")).click();
 
-     click(By.linkText("home page"));
+    click(By.linkText("home page"));
   }
 
 
@@ -90,16 +90,25 @@ public class ContactHelper extends HelperBase {
 
     List<ContactData> contacts = new ArrayList<ContactData>();
 
-    List<WebElement> elements = wd.findElements(By.xpath(".//*[@id='maintable']/tbody/tr"));
-    for (WebElement element : elements) {
+    /*List<WebElement> elements = wd.findElements(By.xpath(".//*[@id='maintable']/tbody/tr"));
+    for (WebElement element : elements) {*/
 
-      String first_name = wd.findElement(By.xpath("//tr[2]/td[3]")).getText();
-      //String first_name = wd.findElement(By.xpath("//th[@class='sortable fd-column-2']")).getText();
-      String last_name = wd.findElement(By.xpath("//tr[2]/td[2]")).getText();
-      //String last_name = wd.findElement(By.xpath("//th[@class='sortable fd-column-1']")).getText();
-      String phone_number = wd.findElement(By.xpath("//tr[2]/td[5]")).getText();
-      //String phone_number = wd.findElement(By.xpath("//th[@class='sortable fd-column-5']")).getText();
-      String id = element.findElement(By.tagName("input")).getAttribute("value");  
+    //String first_name = wd.findElement(By.xpath("//tr[2]/td[3]")).getText();
+    //String first_name = wd.findElement(By.xpath("//th[@class='sortable fd-column-2']")).getText();
+    //String last_name = wd.findElement(By.xpath("//tr[2]/td[2]")).getText();
+    //String last_name = wd.findElement(By.xpath("//th[@class='sortable fd-column-1']")).getText();
+    //String phone_number = wd.findElement(By.xpath("//tr[2]/td[5]")).getText();
+    //String phone_number = wd.findElement(By.xpath("//th[@class='sortable fd-column-5']")).getText();
+
+    List<WebElement> elements = wd.findElements(By.xpath(".//*[@id='maintable']/tbody/tr"));
+
+    for (WebElement element : elements) {
+      List<WebElement> cells = element.findElements(By.tagName("td"));
+
+      String first_name = cells.get(2).getText();
+      String last_name = cells.get(1).getText();
+      String phone_number = cells.get(5).getText();
+      String id = cells.get(0).getAttribute("value");
       ContactData contact = new ContactData(id, first_name, last_name, phone_number, null, null);
       contacts.add(contact);
 
