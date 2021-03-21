@@ -36,7 +36,7 @@ public class ApplicationManager {
 
 
 
-    wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+    wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
     wd.get("http://localhost/addressbook/birthdays.php");
     contactHelper = new ContactHelper(wd);
     groupHelper = new GroupHelper(wd);
