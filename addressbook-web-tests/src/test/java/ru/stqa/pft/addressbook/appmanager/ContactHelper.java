@@ -99,8 +99,8 @@ public class ContactHelper extends HelperBase {
       //String last_name = wd.findElement(By.xpath("//th[@class='sortable fd-column-1']")).getText();
       String phone_number = wd.findElement(By.xpath("//tr[2]/td[5]")).getText();
       //String phone_number = wd.findElement(By.xpath("//th[@class='sortable fd-column-5']")).getText();
-
-      ContactData contact = new ContactData(first_name, last_name, phone_number, null, null);
+      String id = element.findElement(By.tagName("input")).getAttribute("value");  
+      ContactData contact = new ContactData(id, first_name, last_name, phone_number, null, null);
       contacts.add(contact);
 
     }
