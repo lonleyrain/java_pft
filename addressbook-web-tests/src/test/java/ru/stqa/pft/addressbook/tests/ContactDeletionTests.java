@@ -4,6 +4,7 @@ import org.apache.tools.ant.taskdefs.Sleep;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.List;
 
@@ -12,6 +13,15 @@ public class ContactDeletionTests extends TestBase {
   @Test
 
   public void testContactDeletion() throws Exception {
+
+    /*added a check for a group to be created in application before contact deletion
+    because contact is waiting for at least 1 group to be present in app*/
+
+    app.getNavigationHelper().goToGroupPage();
+    if (! app.getGroupHelper().isGroupPresent()) {
+      app.getGroupHelper().createGroup(new GroupData("test1", null, null));
+
+    }
 
     app.getNavigationHelper().goToHomePageInHeader();
     if (! app.getContactHelper().isContactPresent()) {
