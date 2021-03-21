@@ -33,7 +33,7 @@ public class ContactModificationTests extends TestBase {
     List<ContactData> before = app.getContactHelper().getContactList(); // список контактов до изменения контакта
 
     app.getContactHelper().initContactModification(before.size() - 1);
-    ContactData contact = new ContactData("First name", "Last name", "+375290000000", "dummyemail@gmail.com", null);
+    ContactData contact = new ContactData(before.get(before.size()-1).getId(),"First name", "Last name", "+375290000000", "dummyemail@gmail.com", null);
     app.getContactHelper().fillContactForm(contact, false);
     app.getContactHelper().submitContactModification();
     app.getNavigationHelper().goToHomePageInHeader();
