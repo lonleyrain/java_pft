@@ -17,11 +17,10 @@ public class ContactCreationTests extends TestBase {
 /*added a check for a group to be created in application before contact creation
  because contact is waiting for at least 1 group*/
 
-    app.getNavigationHelper().goToGroupPage();
+  /*  app.getNavigationHelper().goToGroupPage();
     if (! app.getGroupHelper().isGroupPresent()) {
-      app.getGroupHelper().createGroup(new GroupData("test1", null, null));
+      app.getGroupHelper().createGroup(new GroupData("test1", null, null));}*/
 
-    }
 
     app.getNavigationHelper().goToHomePageInHeader();
     List<ContactData> before = app.getContactHelper().getContactList(); // список контактов до добавления нового контакта

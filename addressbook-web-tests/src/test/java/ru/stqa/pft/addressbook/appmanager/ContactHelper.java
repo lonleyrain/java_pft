@@ -90,6 +90,7 @@ public class ContactHelper extends HelperBase {
 
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = wd.findElements(By.xpath(".//*[@id='maintable']/tbody/tr"));
+    elements.remove(0);
 
     for (WebElement element: elements) {
 
@@ -97,13 +98,13 @@ public class ContactHelper extends HelperBase {
       String first_name = cells.get(2).getText();
       String last_name = cells.get(1).getText();
       String phone_number = cells.get(5).getText();
-      String id = cells.get(0).getAttribute("value");
+      String id = element.findElement(By.tagName("input")).getAttribute("value");
       ContactData contact = new ContactData(id, first_name, last_name, phone_number, null, null);
       contacts.add(contact);
 
     }
 
-    contacts.remove(0);
+    //contacts.remove(0);
 
 
     return contacts;
