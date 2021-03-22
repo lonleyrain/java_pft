@@ -34,8 +34,13 @@ public class ContactCreationTests extends TestBase {
     Assert.assertEquals(after.size(), before.size() + 1);
 
 
-    contact.setId(after.stream().max((Comparator<ContactData>) (o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
+    //contact.setId(after.stream().max((Comparator<ContactData>) (o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
+
+
     before.add(contact);
+    Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
+    before.sort(byId);
+    after.sort(byId);
 
     Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
 

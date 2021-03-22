@@ -19,8 +19,10 @@ public class ContactData {
     this.id = id;
   }
 
+
+
   public ContactData(String first_name, String last_name, String phone_number, String email, String group_name) {
-    this.id = 0;
+    this.id = Integer.MAX_VALUE;
     this.first_name = first_name;
     this.last_name = last_name;
     this.phone_number = phone_number;
@@ -76,15 +78,13 @@ public class ContactData {
 
     ContactData that = (ContactData) o;
 
-    if (id != that.id) return false;
     if (first_name != null ? !first_name.equals(that.first_name) : that.first_name != null) return false;
     return last_name != null ? last_name.equals(that.last_name) : that.last_name == null;
   }
 
   @Override
   public int hashCode() {
-    int result = id;
-    result = 31 * result + (first_name != null ? first_name.hashCode() : 0);
+    int result = first_name != null ? first_name.hashCode() : 0;
     result = 31 * result + (last_name != null ? last_name.hashCode() : 0);
     return result;
   }
