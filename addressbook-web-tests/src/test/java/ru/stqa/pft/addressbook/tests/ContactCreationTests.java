@@ -13,7 +13,7 @@ import java.util.List;
 
 public class ContactCreationTests extends TestBase {
 
-  @Test
+  @Test (enabled = false)
   public void testContactCreation() throws Exception {
 
 /*added a check for a group to be created in application before contact creation
