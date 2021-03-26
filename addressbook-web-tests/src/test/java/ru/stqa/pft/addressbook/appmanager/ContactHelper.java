@@ -89,12 +89,12 @@ public class ContactHelper extends HelperBase {
   public List<ContactData> getContactList() {
 
     List<ContactData> contacts = new ArrayList<ContactData>();
-    List<WebElement> elements = wd.findElements(By.xpath(".//*[@id='maintable']/tbody/tr"));
-    elements.remove(0);
+    List<WebElement> elements = wd.findElements(By.xpath(".//*[@id='maintable']/tbody/tr")); // находим все ряды таблицы
+    elements.remove(0); // удаляем заголовок таблицы, то есть первый ряд, он же первый элемент списка
 
     for (WebElement element: elements) {
 
-      List<WebElement> cells = element.findElements(By.tagName("td"));
+      List<WebElement> cells = element.findElements(By.tagName("td")); // создаем второй список из элементов (клеток) строки таблицы
       String first_name = cells.get(2).getText();
       String last_name = cells.get(1).getText();
       String phone_number = cells.get(5).getText();
@@ -103,8 +103,6 @@ public class ContactHelper extends HelperBase {
       contacts.add(contact);
 
     }
-
-    //contacts.remove(0);
 
 
     return contacts;
