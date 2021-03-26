@@ -45,6 +45,14 @@ public class GroupHelper extends HelperBase {
 
   }
 
+  public void modifyGroup(int index, GroupData group) {
+    selectGroup(index);
+    initGroupModification();
+    fillGroupForm(group);
+    submitGroupModification();
+    returnToGroupPage();
+  }
+
   public void submitGroupModification() {
     click(By.name("update"));
   }
@@ -76,4 +84,6 @@ public class GroupHelper extends HelperBase {
     }
     return groups;
   }
+
+
 }
