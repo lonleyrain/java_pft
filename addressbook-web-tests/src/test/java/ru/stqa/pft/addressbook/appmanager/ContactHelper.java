@@ -35,6 +35,13 @@ public class ContactHelper extends HelperBase {
     closeAlert();
   }
 
+  public void delete(ContactData contact) {
+
+    selectContactCheckboxById(contact.getId());
+    deleteContactMainPage();
+    closeAlert();
+  }
+
   public void fillContactForm(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getFirst_name());
     type(By.name("lastname"), contactData.getLast_name());
@@ -67,6 +74,10 @@ public class ContactHelper extends HelperBase {
 
   public void selectContactCheckbox(int index) {
     wd.findElements(By.name("selected[]")).get(index).click();
+  }
+
+  public void selectContactCheckboxById(int id) {
+    wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
   }
 
   public void deleteContactMainPage() {
@@ -143,6 +154,5 @@ public class ContactHelper extends HelperBase {
     return contacts;
 
   }
-
 
 }

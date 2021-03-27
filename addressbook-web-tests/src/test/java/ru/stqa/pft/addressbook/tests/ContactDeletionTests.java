@@ -7,6 +7,7 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.List;
+import java.util.Set;
 
 public class ContactDeletionTests extends TestBase {
 
@@ -44,19 +45,16 @@ public class ContactDeletionTests extends TestBase {
 
     app.goTo().HomePageInHeader();
 
-    List<ContactData> before = app.contact().list(); // список контактов до удаления  контакта
-    int index = before.size() - 1;
+    Set<ContactData> before = app.contact().all(); // список контактов до удаления  контакта
+    ContactData deletedContact = before.iterator().next(); // обращаемся к множеству через итератор и используем метод next чтобы вернуть первый попавшийся элемент множества
 
-    app.contact().delete(index);
-
+    app.contact().delete(deletedContact);
     app.goTo().HomePageInHeader();
 
-    List<ContactData> after = app.contact().list(); // список контактов после удаления  контакта
+    Set<ContactData> after = app.contact().all(); // список контактов после удаления  контакта
 
     Assert.assertEquals(after.size(), before.size() - 1);
-
-    before.remove(index);
-
+    before.remove(deletedContact);
     Assert.assertEquals(before, after);
 
 
