@@ -9,7 +9,9 @@ import ru.stqa.pft.addressbook.model.ContactData;
 
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends HelperBase {
 
@@ -119,17 +121,28 @@ public class ContactHelper extends HelperBase {
     return contacts;
 
   }
+
+  public Set<ContactData> all() {
+
+    Set<ContactData> contacts = new HashSet<ContactData>();
+    List<WebElement> elements = wd.findElements(By.xpath(".//*[@id='maintable']/tbody/tr")); // находим все ряды таблицы
+    elements.remove(0); // удаляем заголовок таблицы, то есть первый ряд, он же первый элемент списка
+
+    for (WebElement element: elements) {
+
+      List<WebElement> cells = element.findElements(By.tagName("td")); // создаем второй список из элементов (клеток) строки таблицы
+      String first_name = cells.get(2).getText();
+      String last_name = cells.get(1).getText();
+      String phone_number = cells.get(5).getText();
+      Integer id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      contacts.add(new ContactData().withId(id).withFirst_name(first_name).withLast_name(last_name).withPhone_number(phone_number));
+
+    }
+
+
+    return contacts;
+
+  }
+
+
 }
-
-
-/*List<WebElement> elements = wd.findElements(By.xpath(".//*[@id='maintable']/tbody/tr"));
-    for (WebElement element : elements) {*/
-
-//String first_name = wd.findElement(By.xpath("//tr[2]/td[3]")).getText();
-//String first_name = wd.findElement(By.xpath("//th[@class='sortable fd-column-2']")).getText();
-//String last_name = wd.findElement(By.xpath("//tr[2]/td[2]")).getText();
-//String last_name = wd.findElement(By.xpath("//th[@class='sortable fd-column-1']")).getText();
-//String phone_number = wd.findElement(By.xpath("//tr[2]/td[5]")).getText();
-//String phone_number = wd.findElement(By.xpath("//th[@class='sortable fd-column-5']")).getText();
-
-//List<WebElement> elements = wd.findElements(By.xpath(".//*[@id='maintable']/tbody/tr"));
