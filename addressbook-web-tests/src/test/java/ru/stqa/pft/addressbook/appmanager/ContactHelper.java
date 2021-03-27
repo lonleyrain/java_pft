@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Contacts;
 
 import java.util.HashSet;
 import java.util.List;
@@ -106,9 +107,9 @@ public class ContactHelper extends HelperBase {
   }
 
 
-  public Set<ContactData> all() {
+  public Contacts all() {
 
-    Set<ContactData> contacts = new HashSet<ContactData>();
+    Contacts contacts = new Contacts();
     List<WebElement> elements = wd.findElements(By.xpath(".//*[@id='maintable']/tbody/tr")); // находим все ряды таблицы
     elements.remove(0); // удаляем заголовок таблицы, то есть первый ряд, он же первый элемент списка
 

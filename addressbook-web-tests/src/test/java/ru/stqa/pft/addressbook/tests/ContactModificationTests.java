@@ -1,14 +1,16 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.testng.Assert;
+
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
 
 public class ContactModificationTests extends TestBase {
 
@@ -45,9 +47,8 @@ public class ContactModificationTests extends TestBase {
 
     app.goTo().HomePageInHeader();
 
-    Set<ContactData> before = app.contact().all(); // список контактов до изменения контакта
+    Contacts before = app.contact().all(); // список контактов до изменения контакта
     ContactData modifiedContact = before.iterator().next(); // обращаемся к множеству через итератор и используем метод next чтобы вернуть первый попавшийся элемент множества
-
     ContactData contact = new ContactData()
             .withId(modifiedContact.getId())
             .withFirst_name("First name")
@@ -57,18 +58,9 @@ public class ContactModificationTests extends TestBase {
 
     app.contact().modify(contact);
     app.goTo().HomePageInHeader();
-
-    Set<ContactData> after = app.contact().all(); // список контактов после изменения контакта
-
-    Assert.assertEquals(after.size(), before.size());
-
-
-    before.remove(modifiedContact); // удаляем оставшийся неизмененным объект из списка
-    before.add(contact); // добавляем в список объект измененного контакта, чтобы списки актуализировались
-
-
-
-    Assert.assertEquals(before, after);
+    Contacts after = app.contact().all(); // список контактов после изменения контакта
+    assertEquals(after.size(), before.size());
+    assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
 
 
   }
