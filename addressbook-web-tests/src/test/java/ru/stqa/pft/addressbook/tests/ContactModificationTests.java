@@ -20,14 +20,19 @@ public class ContactModificationTests extends TestBase {
 
     app.goTo().GroupPage();
     if (app.group().list().size() == 0) {
-      app.group().create(new GroupData("test1", null, null));
+      app.group().create(new GroupData().withName("test1"));
 
     }
 
     app.goTo().HomePageInHeader();
 
     if (app.contact().list().size() == 0) {
-      app.contact().create(new ContactData("First name", "Last name", "+375290000000", "dummyemail@gmail.com", "test1"));
+      app.contact().create(new ContactData()
+              .withFirst_name("First name")
+              .withLast_name("Last name")
+              .withPhone_number("+375290000000")
+              .withEmail("dummyemail@gmail.com")
+              .withGroup_name("test1"));
     }
 
 
@@ -41,7 +46,12 @@ public class ContactModificationTests extends TestBase {
 
     List<ContactData> before = app.contact().list(); // список контактов до изменения контакта
     int index = before.size() - 1; // индекс того контакта, который мы собираемся модифицировать
-    ContactData contact = new ContactData(before.get(index).getId(),"First name", "Last name", "+375290000000", "dummyemail@gmail.com", null);
+    ContactData contact = new ContactData()
+            .withId(before.get(index).getId())
+            .withFirst_name("First name")
+            .withLast_name("Last name")
+            .withPhone_number("+375290000000")
+            .withEmail("dummyemail@gmail.com");
 
     app.contact().modify(index, contact);
     app.goTo().HomePageInHeader();

@@ -20,13 +20,18 @@ public class ContactDeletionTests extends TestBase {
 
     app.goTo().GroupPage();
     if (app.group().list().size() == 0) {
-      app.group().create(new GroupData("test1", null, null));
+      app.group().create(new GroupData().withName("test1"));
 
     }
 
     app.goTo().HomePageInHeader();
     if (app.contact().list().size() == 0) {
-      app.contact().create(new ContactData("First name", "Last name", "+375290000000", "dummyemail@gmail.com", "test1"));
+      app.contact().create(new ContactData()
+              .withFirst_name("First name")
+              .withLast_name("Last name")
+              .withPhone_number("+375290000000")
+              .withEmail("dummyemail@gmail.com")
+              .withGroup_name("test1"));
     }
 
   }

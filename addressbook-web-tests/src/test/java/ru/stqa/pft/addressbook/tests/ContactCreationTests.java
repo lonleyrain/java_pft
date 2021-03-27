@@ -22,7 +22,7 @@ public class ContactCreationTests extends TestBase {
 
   app.goTo().GroupPage();
     if (app.group().list().size() == 0) {
-      app.group().create(new GroupData("test1", null, null));}
+      app.group().create(new GroupData().withName("test1"));}
 
   }
 
@@ -33,7 +33,12 @@ public class ContactCreationTests extends TestBase {
 
     app.goTo().HomePageInHeader();
     List<ContactData> before = app.contact().list(); // список контактов до добавления нового контакта
-    ContactData contact = new ContactData("John", "Doe", "+375291111111", "dummyemail@gmail.com", "test1");
+    ContactData contact = new ContactData()
+            .withFirst_name("John")
+            .withLast_name("Doe")
+            .withPhone_number("+375291111111")
+            .withEmail("dummyemail@gmail.com")
+            .withGroup_name("test1");
     app.contact().create(contact);
     //app.getNavigationHelper().goToHomePageInHeader();
     List<ContactData> after = app.contact().list(); // список контактов после добавления нового контакта

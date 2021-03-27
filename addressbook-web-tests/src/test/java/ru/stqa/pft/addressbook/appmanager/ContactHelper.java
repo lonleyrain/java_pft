@@ -111,8 +111,7 @@ public class ContactHelper extends HelperBase {
       String last_name = cells.get(1).getText();
       String phone_number = cells.get(5).getText();
       Integer id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      ContactData contact = new ContactData(id, first_name, last_name, phone_number, null, null);
-      contacts.add(contact);
+      contacts.add(new ContactData().withId(id).withFirst_name(first_name).withLast_name(last_name).withPhone_number(phone_number));
 
     }
 

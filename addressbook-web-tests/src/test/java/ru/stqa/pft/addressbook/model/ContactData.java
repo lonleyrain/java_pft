@@ -1,45 +1,49 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
-  private int id;
-  private final String first_name;
-  private final String last_name;
-  private final String phone_number;
-  private final String email;
-  private final String group_name;
+  private int id = Integer.MAX_VALUE;
+  private  String first_name;
+  private  String last_name;
+  private  String phone_number;
+  private  String email;
+  private  String group_name;
 
 
+
+
+  public ContactData withId(int id) {
+    this.id = id;
+    return this;
+  }
+
+  public ContactData withFirst_name(String first_name) {
+    this.first_name = first_name;
+    return this;
+  }
+
+  public ContactData withLast_name(String last_name) {
+    this.last_name = last_name;
+    return this;
+  }
+
+  public ContactData withPhone_number(String phone_number) {
+    this.phone_number = phone_number;
+    return this;
+  }
+
+  public ContactData withEmail(String email) {
+    this.email = email;
+    return this;
+  }
+
+  public ContactData withGroup_name(String group_name) {
+    this.group_name = group_name;
+    return this;
+  }
 
 
   public int getId() {
     return id;
-  }
-
-  public void setId(int id) {
-    this.id = id;
-  }
-
-
-
-  public ContactData(String first_name, String last_name, String phone_number, String email, String group_name) {
-    this.id = Integer.MAX_VALUE;
-    this.first_name = first_name;
-    this.last_name = last_name;
-    this.phone_number = phone_number;
-    this.email = email;
-    this.group_name = group_name;
-
-  }
-
-
-  public ContactData(int id, String first_name, String last_name, String phone_number, String email, String group_name) {
-    this.id = id;
-    this.first_name = first_name;
-    this.last_name = last_name;
-    this.phone_number = phone_number;
-    this.email = email;
-    this.group_name = group_name;
-
   }
 
   public String getFirst_name() {

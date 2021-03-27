@@ -16,7 +16,7 @@ public class GroupCreationTests extends TestBase {
 
     app.goTo().GroupPage();
     List<GroupData> before = app.group().list(); // список групп до добавления новой группы
-    GroupData group = new GroupData("test2", null, null);
+    GroupData group = new GroupData().withName("test2");
     app.group().create(group);
     List<GroupData> after = app.group().list(); // список групп после добавления новой группы
 
