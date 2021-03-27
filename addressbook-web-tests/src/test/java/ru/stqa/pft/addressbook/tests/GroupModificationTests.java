@@ -7,6 +7,7 @@ import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 public class GroupModificationTests extends TestBase {
 
@@ -15,7 +16,7 @@ public class GroupModificationTests extends TestBase {
   public void ensurePreconditions() {
 
     app.goTo().GroupPage();
-    if (app.group().list().size() == 0) {
+    if (app.group().all().size() == 0) {
       app.group().create(new GroupData().withName("test1"));
     }
 
@@ -26,26 +27,25 @@ public class GroupModificationTests extends TestBase {
   public void testGroupModification() {
 
 
-    List<GroupData> before = app.group().list(); // список групп до изменения группы
-    int index = before.size() - 1; // индекс группы, которую мы собираемся модифицировать
+    Set<GroupData> before = app.group().all(); // список групп до изменения группы
+    GroupData modifiedGroup = before.iterator().next(); // обращаемся к множеству через итератор и используем метод next чтобы вернуть первый попавшийся элемент множества
+
     GroupData group = new GroupData()
-            .withId(before.get(index).getId())
+            .withId(modifiedGroup.getId())
             .withName("test1")
             .withHeader("test2")
             .withFooter("test3");
 
-    app.group().modify(index, group);
+    app.group().modify(group);
 
-    List<GroupData> after = app.group().list(); // список групп после изменения группы
+    Set<GroupData> after = app.group().all(); // список групп после изменения группы
 
     Assert.assertEquals(after.size(), before.size());
 
-    before.remove(index);
+    before.remove(modifiedGroup);
     before.add(group);
 
-    Comparator<? super GroupData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
-    before.sort(byId);
-    after.sort(byId);
+
 
     Assert.assertEquals(before, after);
 

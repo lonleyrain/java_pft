@@ -7,8 +7,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 
-
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -23,17 +21,13 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("add new"));
   }
 
-  public void modify(int index, ContactData contact) {
-    initContactModification(index);
+  public void modify(ContactData contact) {
+    selectContactCheckboxById(contact.getId());
+    initContactModification();
     fillContactForm(contact, false);
     submitContactModification();
   }
 
-  public void delete(int index) {
-    selectContactCheckbox(index);
-    deleteContactMainPage();
-    closeAlert();
-  }
 
   public void delete(ContactData contact) {
 
@@ -59,8 +53,8 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("(//input[@name='submit'])[2]"));
   }
 
-  public void initContactModification(int index) {
-    wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
+  public void initContactModification() {
+    wd.findElement(By.xpath("//img[@alt='Edit']")).click();
   }
 
   public void deleteContactInEditMode() {
@@ -111,27 +105,6 @@ public class ContactHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<ContactData> list() {
-
-    List<ContactData> contacts = new ArrayList<ContactData>();
-    List<WebElement> elements = wd.findElements(By.xpath(".//*[@id='maintable']/tbody/tr")); // находим все ряды таблицы
-    elements.remove(0); // удаляем заголовок таблицы, то есть первый ряд, он же первый элемент списка
-
-    for (WebElement element: elements) {
-
-      List<WebElement> cells = element.findElements(By.tagName("td")); // создаем второй список из элементов (клеток) строки таблицы
-      String first_name = cells.get(2).getText();
-      String last_name = cells.get(1).getText();
-      String phone_number = cells.get(5).getText();
-      Integer id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      contacts.add(new ContactData().withId(id).withFirst_name(first_name).withLast_name(last_name).withPhone_number(phone_number));
-
-    }
-
-
-    return contacts;
-
-  }
 
   public Set<ContactData> all() {
 
