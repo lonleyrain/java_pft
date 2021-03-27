@@ -21,6 +21,12 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("add new"));
   }
 
+  public void modifyContact(int index, ContactData contact) {
+    initContactModification(index);
+    fillContactForm(contact, false);
+    submitContactModification();
+  }
+
   public void fillContactForm(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getFirst_name());
     type(By.name("lastname"), contactData.getLast_name());

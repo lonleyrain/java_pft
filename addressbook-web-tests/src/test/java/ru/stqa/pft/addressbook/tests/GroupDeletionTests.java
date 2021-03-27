@@ -24,7 +24,7 @@ public class GroupDeletionTests extends TestBase {
   @Test
   public void testGroupDeletion() throws Exception {
 
-   
+
     List<GroupData> before = app.getGroupHelper().getGroupList(); // список групп до удаления группы
     app.getGroupHelper().selectGroup(before.size() - 1);
     app.getGroupHelper().deleteSelectedGroups();
