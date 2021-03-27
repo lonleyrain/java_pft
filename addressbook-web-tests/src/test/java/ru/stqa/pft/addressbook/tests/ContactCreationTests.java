@@ -13,15 +13,22 @@ import java.util.List;
 
 public class ContactCreationTests extends TestBase {
 
+  @BeforeMethod
+
+  public void ensurePreconditions() {
+
+    /*added a check for a group to be created in application before contact creation
+ because contact is waiting for at least 1 group*/
+
+  app.getNavigationHelper().goToGroupPage();
+    if (! app.getGroupHelper().isGroupPresent()) {
+      app.getGroupHelper().createGroup(new GroupData("test1", null, null));}
+
+  }
+
   @Test (enabled = true)
   public void testContactCreation() throws Exception {
 
-/*added a check for a group to be created in application before contact creation
- because contact is waiting for at least 1 group*/
-
-  /*  app.getNavigationHelper().goToGroupPage();
-    if (! app.getGroupHelper().isGroupPresent()) {
-      app.getGroupHelper().createGroup(new GroupData("test1", null, null));}*/
 
 
     app.getNavigationHelper().goToHomePageInHeader();
