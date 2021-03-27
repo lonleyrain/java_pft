@@ -7,7 +7,6 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class ContactModificationTests extends TestBase {
@@ -19,14 +18,16 @@ public class ContactModificationTests extends TestBase {
     /*added a check for a group to be created in application before contact modification
     because contact is waiting for at least 1 group to be present in app*/
 
-    app.getNavigationHelper().goToGroupPage();
-    if (! app.getGroupHelper().isGroupPresent()) {
-      app.getGroupHelper().createGroup(new GroupData("test1", null, null));
+    app.goTo().GroupPage();
+    if (app.group().list().size() == 0) {
+      app.group().create(new GroupData("test1", null, null));
 
     }
 
-    if (! app.getContactHelper().isContactPresent()) {
-      app.getContactHelper().createContact(new ContactData("First name", "Last name", "+375290000000", "dummyemail@gmail.com", "test1"));
+    app.goTo().HomePageInHeader();
+
+    if (app.contact().list().size() == 0) {
+      app.contact().create(new ContactData("First name", "Last name", "+375290000000", "dummyemail@gmail.com", "test1"));
     }
 
 
@@ -36,16 +37,16 @@ public class ContactModificationTests extends TestBase {
 
   public void testContactModification() throws Exception {
 
-    app.getNavigationHelper().goToHomePageInHeader();
+    app.goTo().HomePageInHeader();
 
-    List<ContactData> before = app.getContactHelper().getContactList(); // список контактов до изменения контакта
+    List<ContactData> before = app.contact().list(); // список контактов до изменения контакта
     int index = before.size() - 1; // индекс того контакта, который мы собираемся модифицировать
     ContactData contact = new ContactData(before.get(index).getId(),"First name", "Last name", "+375290000000", "dummyemail@gmail.com", null);
 
-    app.getContactHelper().modifyContact(index, contact);
-    app.getNavigationHelper().goToHomePageInHeader();
+    app.contact().modify(index, contact);
+    app.goTo().HomePageInHeader();
 
-    List<ContactData> after = app.getContactHelper().getContactList(); // список контактов после изменения контакта
+    List<ContactData> after = app.contact().list(); // список контактов после изменения контакта
 
     Assert.assertEquals(after.size(), before.size());
 
