@@ -6,6 +6,7 @@ import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 public class GroupCreationTests extends TestBase {
 
@@ -15,19 +16,19 @@ public class GroupCreationTests extends TestBase {
 
 
     app.goTo().GroupPage();
-    List<GroupData> before = app.group().list(); // список групп до добавления новой группы
+    Set<GroupData> before = app.group().all(); // список групп до добавления новой группы
     GroupData group = new GroupData().withName("test2");
     app.group().create(group);
-    List<GroupData> after = app.group().list(); // список групп после добавления новой группы
+    Set<GroupData> after = app.group().all(); // список групп после добавления новой группы
 
     Assert.assertEquals(after.size(), before.size() +1);
 
 
     // group.setId(after.stream().max((Comparator<GroupData>) (o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId()); вычисляется максимальный айди
+
+    group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()); //здесь должен вычисляться максимальный индентификатор
     before.add(group);
-    Comparator<? super GroupData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
-    before.sort(byId);
-    after.sort(byId);
+
 
     Assert.assertEquals(before, after);
   }
