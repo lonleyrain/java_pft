@@ -128,16 +128,13 @@ public class ContactHelper extends HelperBase {
       Integer id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       String first_name = cells.get(2).getText();
       String last_name = cells.get(1).getText();
-      String[] phones = cells.get(5).getText().split("\n");
+      String allPhones = cells.get(5).getText();
 
       contactCache.add(new ContactData()
               .withId(id)
               .withFirst_name(first_name)
               .withLast_name(last_name)
-              .withHomePhone(phones[0])
-              .withMobilePhone(phones[1])
-              .withWorkPhone(phones[2]));
-
+              .withAllPhones(allPhones));
     }
 
 
