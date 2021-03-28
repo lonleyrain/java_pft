@@ -125,11 +125,18 @@ public class ContactHelper extends HelperBase {
     for (WebElement element: elements) {
 
       List<WebElement> cells = element.findElements(By.tagName("td")); // создаем второй список из элементов (клеток) строки таблицы
+      Integer id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       String first_name = cells.get(2).getText();
       String last_name = cells.get(1).getText();
-      String phone_number = cells.get(5).getText();
-      Integer id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      contactCache.add(new ContactData().withId(id).withFirst_name(first_name).withLast_name(last_name).withPhone_number(phone_number));
+      String[] phones = cells.get(5).getText().split("\n");
+
+      contactCache.add(new ContactData()
+              .withId(id)
+              .withFirst_name(first_name)
+              .withLast_name(last_name)
+              .withHomePhone(phones[0])
+              .withMobilePhone(phones[1])
+              .withWorkPhone(phones[2]));
 
     }
 
