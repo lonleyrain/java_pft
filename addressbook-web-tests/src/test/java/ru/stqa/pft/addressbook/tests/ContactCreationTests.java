@@ -40,15 +40,10 @@ public class ContactCreationTests extends TestBase {
             .withEmail("dummyemail@gmail.com")
             .withGroup_name("test1");
     app.contact().create(contact);
+    assertThat(app.contact().count(), equalTo(before.size() + 1));
     //app.getNavigationHelper().goToHomePageInHeader();
     Contacts after = app.contact().all(); // список контактов после добавления нового контакта
-
-    assertThat(after.size(), equalTo(before.size() + 1));
-
-
     //contact.setId(after.stream().max((Comparator<ContactData>) (o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
-
-
     assertThat(after, equalTo(
             before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
 

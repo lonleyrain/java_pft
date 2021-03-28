@@ -55,8 +55,8 @@ public class ContactDeletionTests extends TestBase {
     ContactData deletedContact = before.iterator().next(); // обращаемся к множеству через итератор и используем метод next чтобы вернуть первый попавшийся элемент множества
     app.contact().delete(deletedContact);
     app.goTo().HomePageInHeader();
+    assertThat(app.contact().count(), equalTo(before.size() - 1));
     Contacts after = app.contact().all(); // список контактов после удаления  контакта
-    assertEquals(after.size(), before.size() - 1);
     assertThat(after, equalTo(before.without(deletedContact)));
 
 

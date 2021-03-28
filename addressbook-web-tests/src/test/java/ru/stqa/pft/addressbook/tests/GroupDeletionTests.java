@@ -36,8 +36,8 @@ public class GroupDeletionTests extends TestBase {
     Groups before = app.group().all(); // список групп до удаления группы
     GroupData deletedGroup = before.iterator().next(); // обращаемся к множеству через итератор и используем метод next чтобы вернуть первый попавшийся элемент множества
     app.group().delete(deletedGroup);
+    assertThat(app.group().count(), equalTo(before.size() - 1));
     Groups after = app.group().all(); // количество групп после удаления новой группы
-    assertEquals(after.size(), before.size() - 1);
     assertThat(after, equalTo(before.without(deletedGroup)));
 
 
