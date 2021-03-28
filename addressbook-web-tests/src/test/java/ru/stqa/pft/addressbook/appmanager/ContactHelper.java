@@ -27,6 +27,7 @@ public class ContactHelper extends HelperBase {
     initContactModification();
     fillContactForm(contact, false);
     submitContactModification();
+    contactCache = null;
   }
 
 
@@ -35,6 +36,7 @@ public class ContactHelper extends HelperBase {
     selectContactCheckboxById(contact.getId());
     deleteContactMainPage();
     closeAlert();
+    contactCache = null;
   }
 
   public void fillContactForm(ContactData contactData, boolean creation) {
@@ -84,6 +86,7 @@ public class ContactHelper extends HelperBase {
     initNewContactCreation();
     fillContactForm(contact, true);
     submitContactForm();
+    contactCache = null;
     goToHomePageInConfirmation();
 
   }
@@ -106,10 +109,16 @@ public class ContactHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
+  private Contacts contactCache = null;
+
 
   public Contacts all() {
 
-    Contacts contacts = new Contacts();
+    if (contactCache != null) {
+      return new Contacts (contactCache);
+    }
+
+    contactCache = new Contacts();
     List<WebElement> elements = wd.findElements(By.xpath(".//*[@id='maintable']/tbody/tr")); // находим все ряды таблицы
     elements.remove(0); // удаляем заголовок таблицы, то есть первый ряд, он же первый элемент списка
 
@@ -120,12 +129,12 @@ public class ContactHelper extends HelperBase {
       String last_name = cells.get(1).getText();
       String phone_number = cells.get(5).getText();
       Integer id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      contacts.add(new ContactData().withId(id).withFirst_name(first_name).withLast_name(last_name).withPhone_number(phone_number));
+      contactCache.add(new ContactData().withId(id).withFirst_name(first_name).withLast_name(last_name).withPhone_number(phone_number));
 
     }
 
 
-    return contacts;
+    return new Contacts(contactCache);
 
   }
 

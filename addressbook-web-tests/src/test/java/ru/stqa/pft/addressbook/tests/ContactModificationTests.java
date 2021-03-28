@@ -51,8 +51,8 @@ public class ContactModificationTests extends TestBase {
     ContactData modifiedContact = before.iterator().next(); // обращаемся к множеству через итератор и используем метод next чтобы вернуть первый попавшийся элемент множества
     ContactData contact = new ContactData()
             .withId(modifiedContact.getId())
-            .withFirst_name("First name")
-            .withLast_name("Last name")
+            .withFirst_name("Updated name")
+            .withLast_name("UpdatedLast name")
             .withPhone_number("+375290000000")
             .withEmail("dummyemail@gmail.com");
 
