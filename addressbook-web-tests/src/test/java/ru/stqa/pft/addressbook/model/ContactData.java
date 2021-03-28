@@ -15,7 +15,25 @@ public class ContactData {
   private String email1;
   private String email2;
   private String email3;
+  private String editAddress;
+  private String mainAddress;
 
+  public String getMainAddress() {
+    return mainAddress;
+  }
+  public ContactData withMainAddress(String mainAddress) {
+    this.mainAddress = mainAddress;
+    return this;
+  }
+
+
+  public String getEditAddress() {
+    return editAddress;
+  }
+  public ContactData withEditAddress(String editAddress) {
+    this.editAddress = editAddress;
+    return this;
+  }
 
   public String getEmail1() {
     return email1;
