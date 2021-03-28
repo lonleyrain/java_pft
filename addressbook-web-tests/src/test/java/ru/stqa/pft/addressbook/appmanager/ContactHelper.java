@@ -7,10 +7,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
-
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
 
 public class ContactHelper extends HelperBase {
 
@@ -29,7 +27,6 @@ public class ContactHelper extends HelperBase {
     submitContactModification();
     contactCache = null;
   }
-
 
   public void delete(ContactData contact) {
 
@@ -68,7 +65,6 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("(//input[@name='update'])[2]"));
   }
 
-
   public void selectContactCheckbox(int index) {
     wd.findElements(By.name("selected[]")).get(index).click();
   }
@@ -97,7 +93,6 @@ public class ContactHelper extends HelperBase {
 
     click(By.linkText("home page"));
   }
-
 
   public boolean isContactPresent() {
     //return isElementPresent(By.xpath("(//input[@name='selected[]'])"));
@@ -129,12 +124,15 @@ public class ContactHelper extends HelperBase {
       String first_name = cells.get(2).getText();
       String last_name = cells.get(1).getText();
       String allPhones = cells.get(5).getText();
+      String allEmails = cells.get(4).getText();
 
       contactCache.add(new ContactData()
               .withId(id)
               .withFirst_name(first_name)
               .withLast_name(last_name)
-              .withAllPhones(allPhones));
+              .withAllPhones(allPhones)
+              .withAllEmails(allEmails));
+
     }
 
 
@@ -149,6 +147,9 @@ public class ContactHelper extends HelperBase {
     String home = wd.findElement(By.name("home")).getAttribute("value");
     String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
     String work = wd.findElement(By.name("work")).getAttribute("value");
+    String email1 = wd.findElement(By.name("email")).getAttribute("value");
+    String email2 = wd.findElement(By.name("email2")).getAttribute("value");
+    String email3 = wd.findElement(By.name("email3")).getAttribute("value");
     wd.navigate().back();
     return new ContactData()
             .withId(contact.getId())
@@ -156,7 +157,10 @@ public class ContactHelper extends HelperBase {
             .withLast_name(lastname)
             .withHomePhone(home)
             .withMobilePhone(mobile)
-            .withWorkPhone(work);
+            .withWorkPhone(work)
+            .withEmail1(email1)
+            .withEmail2(email2)
+            .withEmail3(email3);
   }
 
   private void initContactModificationById(int id) {
