@@ -33,17 +33,9 @@ public class ContactCreationTests extends TestBase {
   @DataProvider
   public Iterator<Object[]> validContacts() throws IOException {
     List<Object[]> list = new ArrayList<Object[]>();
-    /*list.add(new Object[] {new ContactData()
-            .withFirst_name("firstname1withpic")
-            .withLast_name("lastname 1")
-            .withPhone_number("375298888888")
-            .withEmail("email@testmail1.com")
-            .withGroup_name("test1")
-            .withPhoto(new File("src/test/resources/stru.png"))});*/
-
 
     BufferedReader reader =
-            new BufferedReader(new FileReader(new File("src/test/resources/groups.csv")));
+            new BufferedReader(new FileReader(new File("src/test/resources/contacts.csv")));
     String line = reader.readLine();
     while (line != null ) {
       String[] split = line.split(";");
@@ -52,14 +44,12 @@ public class ContactCreationTests extends TestBase {
               .withLast_name(split[1])
               .withPhone_number(split[2])
               .withEmail(split[3])
-              .withGroup_name(split[4])
-              .withPhoto(new File("src/test/resources/stru.png"))});
+              .withGroup_name(split[4])});
       line = reader.readLine();
     }
     return list.iterator();
-
   }
-
+  /*.withPhoto(new File("src/test/resources/stru.png")*/
   @Test (dataProvider = "validContacts")
   public void testContactCreation(ContactData contact) throws Exception {
 
