@@ -1,0 +1,23 @@
+[
+  {
+    "first_name": "FirstNameTest 0",
+    "last_name": "LastNameTest 0",
+    "phone_number": "375290000000",
+    "email": "test_email@test 0",
+    "group_name": "test0"
+  },
+  {
+    "first_name": "FirstNameTest 1",
+    "last_name": "LastNameTest 1",
+    "phone_number": "375290000001",
+    "email": "test_email@test 1",
+    "group_name": "test1"
+  },
+  {
+    "first_name": "FirstNameTest 2",
+    "last_name": "LastNameTest 2",
+    "phone_number": "375290000002",
+    "email": "test_email@test 2",
+    "group_name": "test2"
+  }
+]
