@@ -8,6 +8,9 @@ import ru.stqa.pft.addressbook.model.GroupData;
 
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -27,20 +30,24 @@ public class ContactCreationTests extends TestBase {
 
   }
 
-  @Test
-  public void testContactCreation() throws Exception {
+  @DataProvider
+  public Iterator<Object[]> validContacts() {
+    List<Object[]> list = new ArrayList<Object[]>();
+    list.add(new Object[] {new ContactData()
+            .withFirst_name("firstname1withpic")
+            .withLast_name("lastname 1")
+            .withPhone_number("375298888888")
+            .withEmail("email@testmail1.com")
+            .withGroup_name("test1")
+            .withPhoto(new File("src/test/resources/stru.png"))});
+    return list.iterator();
+  }
 
+  @Test (dataProvider = "validContacts")
+  public void testContactCreation(ContactData contact) throws Exception {
 
     app.goTo().HomePageInHeader();
     Contacts before = app.contact().all(); // список контактов до добавления нового контакта
-    File photo = new File("src/test/resources/stru.png");
-    ContactData contact = new ContactData()
-            .withFirst_name("John")
-            .withLast_name("Doe")
-            .withPhone_number("+375291111111")
-            .withEmail("dummyemail@gmail.com")
-            .withGroup_name("test1")
-            .withPhoto(photo);
     app.contact().create(contact);
     assertThat(app.contact().count(), equalTo(before.size() + 1));
     //app.getNavigationHelper().goToHomePageInHeader();
