@@ -7,7 +7,7 @@ import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 
 
-import java.io.File;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -31,16 +31,33 @@ public class ContactCreationTests extends TestBase {
   }
 
   @DataProvider
-  public Iterator<Object[]> validContacts() {
+  public Iterator<Object[]> validContacts() throws IOException {
     List<Object[]> list = new ArrayList<Object[]>();
-    list.add(new Object[] {new ContactData()
+    /*list.add(new Object[] {new ContactData()
             .withFirst_name("firstname1withpic")
             .withLast_name("lastname 1")
             .withPhone_number("375298888888")
             .withEmail("email@testmail1.com")
             .withGroup_name("test1")
-            .withPhoto(new File("src/test/resources/stru.png"))});
+            .withPhoto(new File("src/test/resources/stru.png"))});*/
+
+
+    BufferedReader reader =
+            new BufferedReader(new FileReader(new File("src/test/resources/groups.csv")));
+    String line = reader.readLine();
+    while (line != null ) {
+      String[] split = line.split(";");
+      list.add(new Object[] {new ContactData()
+              .withFirst_name(split[0])
+              .withLast_name(split[1])
+              .withPhone_number(split[2])
+              .withEmail(split[3])
+              .withGroup_name(split[4])
+              .withPhoto(new File("src/test/resources/stru.png"))});
+      line = reader.readLine();
+    }
     return list.iterator();
+
   }
 
   @Test (dataProvider = "validContacts")
