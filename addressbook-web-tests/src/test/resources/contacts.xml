@@ -1,0 +1,23 @@
+<list>
+  <contact>
+    <first__name>FirstNameTest 0</first__name>
+    <last__name>LastNameTest 0</last__name>
+    <phone__number>375290000000</phone__number>
+    <email>test_email@test 0</email>
+    <group__name>test0</group__name>
+  </contact>
+  <contact>
+    <first__name>FirstNameTest 1</first__name>
+    <last__name>LastNameTest 1</last__name>
+    <phone__number>375290000001</phone__number>
+    <email>test_email@test 1</email>
+    <group__name>test1</group__name>
+  </contact>
+  <contact>
+    <first__name>FirstNameTest 2</first__name>
+    <last__name>LastNameTest 2</last__name>
+    <phone__number>375290000002</phone__number>
+    <email>test_email@test 2</email>
+    <group__name>test2</group__name>
+  </contact>
+</list>
