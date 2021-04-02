@@ -93,7 +93,7 @@ public class ContactDataGenerator {
               .withLast_name(String.format("LastNameTest %s", i))
               .withPhone_number(String.format("37529000000%s", i))
               .withEmail(String.format("test_email@test %s", i))
-              .withGroup_name(String.format("test%s",i)));
+              .withGroup_name(String.format("test%s", i)));
     }
     return contacts;
   }
