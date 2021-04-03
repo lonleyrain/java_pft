@@ -69,9 +69,6 @@ public class ContactCreationTests extends TestBase {
     }
   }
 
-
-
-
   /*.withPhoto(new File("src/test/resources/stru.png")*/
   @Test (dataProvider = "validContactsFromJSON")
   public void testContactCreation(ContactData contact) throws Exception {
