@@ -1,23 +1,26 @@
 [
   {
-    "first_name": "FirstNameTest 0",
-    "last_name": "LastNameTest 0",
+    "first_name": "FirstNameTest0",
+    "last_name": "LastNameTest0",
     "phone_number": "375290000000",
-    "email": "test_email@test 0",
-    "group_name": "test0"
+    "email": "test_email@test0",
+    "group_name": "test0",
+    "photo": {}
   },
   {
-    "first_name": "FirstNameTest 1",
-    "last_name": "LastNameTest 1",
+    "first_name": "FirstNameTest1",
+    "last_name": "LastNameTest1",
     "phone_number": "375290000001",
-    "email": "test_email@test 1",
-    "group_name": "test1"
+    "email": "test_email@test1",
+    "group_name": "test1",
+    "photo": {}
   },
   {
-    "first_name": "FirstNameTest 2",
-    "last_name": "LastNameTest 2",
+    "first_name": "FirstNameTest2",
+    "last_name": "LastNameTest2",
     "phone_number": "375290000002",
-    "email": "test_email@test 2",
-    "group_name": "test2"
+    "email": "test_email@test2",
+    "group_name": "test2",
+    "photo": {}
   }
 ]

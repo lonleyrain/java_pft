@@ -30,6 +30,7 @@ public class ContactData {
   private String email3;
   private String editAddress;
   private String mainAddress;
+  @Expose
   private File photo;
 
 
