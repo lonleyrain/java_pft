@@ -5,7 +5,7 @@
     "phone_number": "375290000000",
     "email": "test_email@test0",
     "group_name": "test0",
-    "photo": {}
+    "photo": "src\\test\\resources\\stru.png"
   },
   {
     "first_name": "FirstNameTest1",
@@ -13,7 +13,7 @@
     "phone_number": "375290000001",
     "email": "test_email@test1",
     "group_name": "test1",
-    "photo": {}
+    "photo": "src\\test\\resources\\stru.png"
   },
   {
     "first_name": "FirstNameTest2",
@@ -21,6 +21,6 @@
     "phone_number": "375290000002",
     "email": "test_email@test2",
     "group_name": "test2",
-    "photo": {}
+    "photo": "src\\test\\resources\\stru.png"
   }
 ]
