@@ -21,15 +21,14 @@ public class ContactModificationTests extends TestBase {
     /*added a check for a group to be created in application before contact modification
     because contact is waiting for at least 1 group to be present in app*/
 
-    app.goTo().GroupPage();
-    if (app.group().all().size() == 0) {
+    if (app.db().groups().size() == 0) {
+      app.goTo().GroupPage();
       app.group().create(new GroupData().withName("test1"));
-
     }
 
     app.goTo().HomePageInHeader();
 
-    if (app.contact().all().size() == 0) {
+    if (app.db().contacts().size() == 0) {
       app.contact().create(new ContactData()
               .withFirst_name("First name")
               .withLast_name("Last name")
@@ -47,7 +46,8 @@ public class ContactModificationTests extends TestBase {
 
     app.goTo().HomePageInHeader();
 
-    Contacts before = app.contact().all(); // список контактов до изменения контакта
+    /*Contacts before = app.contact().all(); // список контактов до изменения контакта (Через юай)*/
+    Contacts before = app.db().contacts(); // список контактов из базы данных
     ContactData modifiedContact = before.iterator().next(); // обращаемся к множеству через итератор и используем метод next чтобы вернуть первый попавшийся элемент множества
     ContactData contact = new ContactData()
             .withId(modifiedContact.getId())
@@ -59,7 +59,8 @@ public class ContactModificationTests extends TestBase {
     app.contact().modify(contact);
     app.goTo().HomePageInHeader();
     assertThat(app.contact().count(), equalTo(before.size() ));
-    Contacts after = app.contact().all(); // список контактов после изменения контакта
+    /*Contacts after = app.contact().all(); // список контактов после изменения контакта*/
+    Contacts after = app.db().contacts(); // список контактов из базы данных
     assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
 
 

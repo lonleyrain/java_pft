@@ -22,11 +22,10 @@ public class GroupModificationTests extends TestBase {
 
   public void ensurePreconditions() {
 
-    app.goTo().GroupPage();
-    if (app.group().all().size() == 0) {
+    if (app.db().groups().size() == 0) {
+      app.goTo().GroupPage();
       app.group().create(new GroupData().withName("test1"));
     }
-
   }
 
   @Test
@@ -34,7 +33,8 @@ public class GroupModificationTests extends TestBase {
   public void testGroupModification() {
 
 
-    Groups before = app.group().all(); // список групп до изменения группы
+    /*Groups before = app.group().all(); // список групп до изменения группы (через юай)*/
+    Groups before = app.db().groups(); // список групп из базы данных
     GroupData modifiedGroup = before.iterator().next(); // обращаемся к множеству через итератор и используем метод next чтобы вернуть первый попавшийся элемент множества
 
     GroupData group = new GroupData()
@@ -42,10 +42,11 @@ public class GroupModificationTests extends TestBase {
             .withName("test1")
             .withHeader("test2")
             .withFooter("test3");
-
+    app.goTo().GroupPage();
     app.group().modify(group);
     assertThat(app.group().count(), equalTo(before.size()));
-    Groups after = app.group().all(); // список групп после изменения группы
+    /*Groups after = app.group().all(); // список групп после изменения группы*/
+    Groups after = app.db().groups(); // список групп из базы данных
     assertThat(after, equalTo(before.without(modifiedGroup).withAdded(group)));
 
   }
