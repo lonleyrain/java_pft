@@ -31,7 +31,7 @@ public class ContactPhoneTests extends TestBase {
       app.contact().create(new ContactData()
               .withFirst_name("First name")
               .withLast_name("Last name")
-              .withPhone_number("+375290000000")
+              .withMobilePhone("+375290000000")
               .withEmail("dummyemail@gmail.com")
               .withGroup_name("test1"));
     }
@@ -58,7 +58,7 @@ public class ContactPhoneTests extends TestBase {
   }
 
   private String mergeEmails(ContactData contact) {
-    return Arrays.asList(contact.getEmail1(),contact.getEmail2(), contact.getEmail3())
+    return Arrays.asList(contact.getEmail(),contact.getEmail2(), contact.getEmail3())
             .stream().filter(s -> ! s.equals(""))
             .map(ContactPhoneTests::cleaned)
             .collect(Collectors.joining("\n"));

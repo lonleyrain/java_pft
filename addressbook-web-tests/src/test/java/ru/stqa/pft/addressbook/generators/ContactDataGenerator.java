@@ -82,7 +82,7 @@ public class ContactDataGenerator {
         writer.write(String.format("%s;%s;%s;%s;%s\n",
                 contact.getFirst_name(),
                 contact.getLast_name(),
-                contact.getPhone_number(),
+                contact.getMobilePhone(),
                 contact.getEmail(),
                 contact.getGroup_name()));
       }
@@ -95,7 +95,7 @@ public class ContactDataGenerator {
       contacts.add(new ContactData()
               .withFirst_name(String.format("FirstNameTest%s", i))
               .withLast_name(String.format("LastNameTest%s", i))
-              .withPhone_number(String.format("37529000000%s", i))
+              .withMobilePhone(String.format("37529000000%s", i))
               .withEmail(String.format("test_email@test%s", i))
               .withGroup_name(String.format("test%s", i))
               .withPhoto(new File(String.format("src/test/resources/stru.png")))

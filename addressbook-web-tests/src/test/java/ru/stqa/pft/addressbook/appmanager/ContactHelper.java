@@ -39,7 +39,7 @@ public class ContactHelper extends HelperBase {
   public void fillContactForm(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getFirst_name());
     type(By.name("lastname"), contactData.getLast_name());
-    type(By.name("mobile"), contactData.getPhone_number());
+    type(By.name("mobile"), contactData.getMobilePhone());
     type(By.name("email"), contactData.getEmail());
     attach(By.name("photo"), contactData.getPhoto());
 
@@ -162,7 +162,7 @@ public class ContactHelper extends HelperBase {
             .withHomePhone(home)
             .withMobilePhone(mobile)
             .withWorkPhone(work)
-            .withEmail1(email1)
+            .withEmail(email1)
             .withEmail2(email2)
             .withEmail3(email3)
             .withEditAddress(editAddress);
