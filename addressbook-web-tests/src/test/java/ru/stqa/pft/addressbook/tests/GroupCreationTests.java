@@ -62,10 +62,11 @@ public class GroupCreationTests extends TestBase {
   public void testGroupCreation(GroupData group) throws Exception {
 
     app.goTo().GroupPage();
-    Groups before = app.group().all(); // список групп до добавления новой группы
+    Groups before = app.db().groups(); // список групп до добавления новой группы, взятый из базы данных
     app.group().create(group);
     assertThat(app.group().count(), equalTo(before.size() +1));
-    Groups after = app.group().all(); // список групп после добавления новой группы
+    app.goTo().GroupPage();
+    Groups after = app.db().groups(); // список групп после добавления новой группы, взятый из базы данных
     // group.setId(after.stream().max((Comparator<GroupData>) (o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId()); вычисляется максимальный айди
     assertThat(after, equalTo(
             before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
