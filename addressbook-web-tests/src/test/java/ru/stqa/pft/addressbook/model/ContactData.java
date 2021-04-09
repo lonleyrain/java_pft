@@ -237,7 +237,10 @@ public class ContactData {
 
     if (id != that.id) return false;
     if (first_name != null ? !first_name.equals(that.first_name) : that.first_name != null) return false;
-    return last_name != null ? last_name.equals(that.last_name) : that.last_name == null;
+    if (last_name != null ? !last_name.equals(that.last_name) : that.last_name != null) return false;
+    if (group_name != null ? !group_name.equals(that.group_name) : that.group_name != null) return false;
+    if (mobilePhone != null ? !mobilePhone.equals(that.mobilePhone) : that.mobilePhone != null) return false;
+    return email != null ? email.equals(that.email) : that.email == null;
   }
 
   @Override
@@ -245,7 +248,9 @@ public class ContactData {
     int result = id;
     result = 31 * result + (first_name != null ? first_name.hashCode() : 0);
     result = 31 * result + (last_name != null ? last_name.hashCode() : 0);
+    result = 31 * result + (group_name != null ? group_name.hashCode() : 0);
+    result = 31 * result + (mobilePhone != null ? mobilePhone.hashCode() : 0);
+    result = 31 * result + (email != null ? email.hashCode() : 0);
     return result;
   }
-
 }
