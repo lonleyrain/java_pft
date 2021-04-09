@@ -27,9 +27,9 @@ public class ContactDeletionTests extends TestBase {
     because contact is waiting for at least 1 group to be present in app*/
 
     app.goTo().GroupPage();
-    if (app.group().all().size() == 0) {
+    if (app.db().groups().size() == 0) {
+      app.goTo().GroupPage();
       app.group().create(new GroupData().withName("test1"));
-
     }
 
     app.goTo().HomePageInHeader();

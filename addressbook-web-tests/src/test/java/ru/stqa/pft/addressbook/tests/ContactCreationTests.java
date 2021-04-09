@@ -31,9 +31,10 @@ public class ContactCreationTests extends TestBase {
  because contact is waiting for at least 1 group*/
 
   app.goTo().GroupPage();
-    if (app.group().all().size() == 0) {
-      app.group().create(new GroupData().withName("test1"));}
-
+    if (app.db().groups().size() == 0) {
+      app.goTo().GroupPage();
+      app.group().create(new GroupData().withName("test1"));
+    }
   }
 
   @DataProvider
@@ -76,11 +77,13 @@ public class ContactCreationTests extends TestBase {
   public void testContactCreation(ContactData contact) throws Exception {
 
     app.goTo().HomePageInHeader();
-    Contacts before = app.contact().all(); // список контактов до добавления нового контакта
+    /*Contacts before = app.contact().all(); // список контактов до добавления нового контакта*/
+    Contacts before = app.db().contacts();
     app.contact().create(contact);
     assertThat(app.contact().count(), equalTo(before.size() + 1));
     //app.getNavigationHelper().goToHomePageInHeader();
-    Contacts after = app.contact().all(); // список контактов после добавления нового контакта
+    /*Contacts after = app.contact().all(); // список контактов после добавления нового контакта*/
+    Contacts after = app.db().contacts();
     //contact.setId(after.stream().max((Comparator<ContactData>) (o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
     assertThat(after, equalTo(
             before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
