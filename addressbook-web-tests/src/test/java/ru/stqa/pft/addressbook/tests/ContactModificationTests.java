@@ -55,7 +55,7 @@ public class ContactModificationTests extends TestBase {
             .withLast_name("UpdatedLast name")
             .withMobilePhone("+375290000000")
             .withEmail("dummyemail@gmail.com");
-    
+
     app.contact().modify(contact);
     app.goTo().HomePageInHeader();
     assertThat(app.contact().count(), equalTo(before.size() ));
