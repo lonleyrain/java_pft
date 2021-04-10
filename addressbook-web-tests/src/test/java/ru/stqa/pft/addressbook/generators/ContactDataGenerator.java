@@ -93,8 +93,8 @@ public class ContactDataGenerator {
     List<ContactData> contacts = new ArrayList<ContactData>();
     for (int i = 0; i < count; i++) {
       contacts.add(new ContactData()
-              .withFirst_name(String.format("FirstNameTest%s", i))
-              .withLast_name(String.format("LastNameTest%s", i))
+              .withFirst_name(String.format("New Contact First Name%s", i))
+              .withLast_name(String.format("New Contact Last Name%s", i))
               .withMobilePhone(String.format("37529000000%s", i))
               .withEmail(String.format("test_email@test%s", i))
               .withGroup_name(String.format("test%s", i))

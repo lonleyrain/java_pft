@@ -75,16 +75,50 @@ public class ContactData {
   @Type(type = "text")
   private String photo;
 
-  /*@Expose
-  private  String phone_number;*/
-
-  /*private String email1;*/
-
-
 
   public File getPhoto() {
-    return new File(photo);
+    if (photo == null) {
+      return null;
+    } else {
+      return new File(photo);
+    }
   }
+
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "id=" + id +
+            ", first_name='" + first_name + '\'' +
+            ", last_name='" + last_name + '\'' +
+            ", mobilePhone='" + mobilePhone + '\'' +
+            ", email='" + email + '\'' +
+            '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    ContactData that = (ContactData) o;
+
+    if (id != that.id) return false;
+    if (first_name != null ? !first_name.equals(that.first_name) : that.first_name != null) return false;
+    if (last_name != null ? !last_name.equals(that.last_name) : that.last_name != null) return false;
+    if (mobilePhone != null ? !mobilePhone.equals(that.mobilePhone) : that.mobilePhone != null) return false;
+    return email != null ? email.equals(that.email) : that.email == null;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = id;
+    result = 31 * result + (first_name != null ? first_name.hashCode() : 0);
+    result = 31 * result + (last_name != null ? last_name.hashCode() : 0);
+    result = 31 * result + (mobilePhone != null ? mobilePhone.hashCode() : 0);
+    result = 31 * result + (email != null ? email.hashCode() : 0);
+    return result;
+  }
+
   public ContactData withPhoto(File photo) {
     this.photo = photo.getPath();
     return this;
@@ -107,6 +141,10 @@ public class ContactData {
     return this;
   }
 
+/*@Expose
+  private  String phone_number;*/
+
+  /*private String email1;*/
   /*public String getEmail1() {
     return email1;
   }*/
@@ -217,35 +255,6 @@ public class ContactData {
   public ContactData withGroup_name(String group_name) {
     this.group_name = group_name;
     return this;
-  }
-
-  @Override
-  public String toString() {
-    return "ContactData{" +
-            "id='" + id + '\'' +
-            ", first_name='" + first_name + '\'' +
-            ", last_name='" + last_name + '\'' +
-            '}';
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-
-    ContactData that = (ContactData) o;
-
-    if (id != that.id) return false;
-    if (first_name != null ? !first_name.equals(that.first_name) : that.first_name != null) return false;
-    return last_name != null ? last_name.equals(that.last_name) : that.last_name == null;
-  }
-
-  @Override
-  public int hashCode() {
-    int result = id;
-    result = 31 * result + (first_name != null ? first_name.hashCode() : 0);
-    result = 31 * result + (last_name != null ? last_name.hashCode() : 0);
-    return result;
   }
 
 }

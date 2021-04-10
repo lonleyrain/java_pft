@@ -36,8 +36,6 @@ public class ContactModificationTests extends TestBase {
               .withEmail("dummyemail@gmail.com")
               .withGroup_name("test1"));
     }
-
-
   }
 
   @Test (enabled = true)
