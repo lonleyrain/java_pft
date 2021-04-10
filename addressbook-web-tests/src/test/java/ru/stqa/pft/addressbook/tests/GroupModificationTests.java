@@ -48,8 +48,8 @@ public class GroupModificationTests extends TestBase {
     /*Groups after = app.group().all(); // список групп после изменения группы*/
     Groups after = app.db().groups(); // список групп из базы данных
     assertThat(after, equalTo(before.without(modifiedGroup).withAdded(group)));
+    verifyGroupListInUI();
 
   }
-
 
 }

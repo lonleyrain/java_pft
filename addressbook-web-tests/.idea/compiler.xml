@@ -4,6 +4,6 @@
     <bytecodeTargetLevel target="1.8" />
   </component>
   <component name="JavacSettings">
-    <option name="ADDITIONAL_OPTIONS_STRING" value="-encoding ISO-8859-1" />
+    <option name="ADDITIONAL_OPTIONS_STRING" value="-encoding UTF-8" />
   </component>
 </project>
