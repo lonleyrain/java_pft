@@ -51,23 +51,29 @@ public class TestBase {
 
   public void verifyGroupListInUI() {
 
-    Groups dbGroups = app.db().groups();
-    Groups uiGoups = app.group().all();
-    assertThat(uiGoups, equalTo(dbGroups.stream().map((g) -> new GroupData()
-            .withId(g.getId())
-            .withName(g.getName()))
-            .collect(Collectors.toSet())));
+    if (Boolean.getBoolean("verifyUI")) {
+
+      Groups dbGroups = app.db().groups();
+      Groups uiGoups = app.group().all();
+      assertThat(uiGoups, equalTo(dbGroups.stream().map((g) -> new GroupData()
+              .withId(g.getId())
+              .withName(g.getName()))
+              .collect(Collectors.toSet())));
+    }
   }
 
   public void verifyContactListInUI() {
 
-    Contacts dbContacts = app.db().contacts();
-    Contacts uiContacts = app.contact().all();
-    assertThat(uiContacts, equalTo(dbContacts.stream().map((c) -> new ContactData()
-            .withId(c.getId())
-            .withFirst_name(c.getFirst_name())
-            .withLast_name(c.getLast_name()))
-            .collect(Collectors.toSet())));
-  }
+    if (Boolean.getBoolean("verifyUI")) {
 
+      Contacts dbContacts = app.db().contacts();
+      Contacts uiContacts = app.contact().all();
+      assertThat(uiContacts, equalTo(dbContacts.stream().map((c) -> new ContactData()
+              .withId(c.getId())
+              .withFirst_name(c.getFirst_name())
+              .withLast_name(c.getLast_name()))
+              .collect(Collectors.toSet())));
+
+    }
+  }
 }
