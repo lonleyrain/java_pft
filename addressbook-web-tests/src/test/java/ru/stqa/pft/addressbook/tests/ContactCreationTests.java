@@ -10,6 +10,7 @@ import org.testng.annotations.*;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 
 import java.io.*;
@@ -71,20 +72,16 @@ public class ContactCreationTests extends TestBase {
 
     }
   }
-
-  /*.withPhoto(new File("src/test/resources/stru.png")*/
+  
   @Test (dataProvider = "validContactsFromJSON")
   public void testContactCreation(ContactData contact) throws Exception {
 
+    Groups groups = app.db().groups();
     app.goTo().HomePageInHeader();
-    /*Contacts before = app.contact().all(); // список контактов до добавления нового контакта*/
     Contacts before = app.db().contacts();
     app.contact().create(contact);
     assertThat(app.contact().count(), equalTo(before.size() + 1));
-    //app.getNavigationHelper().goToHomePageInHeader();
-    /*Contacts after = app.contact().all(); // список контактов после добавления нового контакта*/
     Contacts after = app.db().contacts();
-    //contact.setId(after.stream().max((Comparator<ContactData>) (o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
     assertThat(after, equalTo(
             before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
     verifyContactListInUI();
