@@ -3,6 +3,7 @@ package ru.stqa.pft.addressbook.tests;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 
 public class ContactAddToGroupTests extends TestBase {
@@ -35,6 +36,10 @@ public class ContactAddToGroupTests extends TestBase {
 
   public void testContactAddToGroup() {
 
-    
+    app.goTo().HomePageInHeader();
+    Contacts before = app.db().contacts();
+    ContactData contactToBeAddedToGroup = before.iterator().next();
+    app.contact().addContactToGroup(contactToBeAddedToGroup);
+    app.goTo().HomePageInHeader();
   }
 }

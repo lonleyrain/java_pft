@@ -36,6 +36,13 @@ public class ContactHelper extends HelperBase {
     contactCache = null;
   }
 
+  public void addContactToGroup(ContactData contact) {
+    selectContactCheckboxById(contact.getId());
+
+
+
+  }
+
   public void fillContactForm(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getFirst_name());
     type(By.name("lastname"), contactData.getLast_name());
@@ -175,6 +182,7 @@ public class ContactHelper extends HelperBase {
   private void initContactModificationById(int id) {
     wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
   }
+
 
 
 }
