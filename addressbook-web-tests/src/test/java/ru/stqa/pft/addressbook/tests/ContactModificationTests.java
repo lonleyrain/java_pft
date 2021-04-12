@@ -33,8 +33,8 @@ public class ContactModificationTests extends TestBase {
               .withFirst_name("First name")
               .withLast_name("Last name")
               .withMobilePhone("+375290000000")
-              .withEmail("dummyemail@gmail.com")
-              .withGroup_name("test1"));
+              .withEmail("dummyemail@gmail.com"));
+              //.withGroup_name("test1"));
     }
   }
 

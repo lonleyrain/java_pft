@@ -205,11 +205,6 @@ public class ContactData {
     return new Groups(groups);
   }
 
-  public ContactData withGroups(Set<GroupData> groups) {
-    this.groups = groups;
-    return this;
-  }
-
   public ContactData inGroup(GroupData group) {
     groups.add(group);
     return this;
