@@ -97,7 +97,6 @@ public class ContactDataGenerator {
               .withLast_name(String.format("New Contact Last Name%s", i))
               .withMobilePhone(String.format("37529000000%s", i))
               .withEmail(String.format("test_email@test%s", i))
-              //.withGroups(String.format("test%s", i))
               .withPhoto(new File(String.format("src/test/resources/stru.png")))
               );
     }

@@ -7,7 +7,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
-import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.List;
 
@@ -20,6 +19,15 @@ public class ContactHelper extends HelperBase {
 
   public void initNewContactCreation() {
     click(By.linkText("add new"));
+  }
+
+  public void create(ContactData contact) {
+    initNewContactCreation();
+    fillContactForm(contact, true);
+    submitContactForm();
+    contactCache = null;
+    goToHomePageInConfirmation();
+
   }
 
   public void modify(ContactData contact) {
@@ -42,13 +50,23 @@ public class ContactHelper extends HelperBase {
     selectContactCheckboxById(contactData.getId());
     new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
     wd.findElement(By.name("add")).click();
-    goToGroupPageAfterAddingContact();
+    goToGroupPageAfterAddingRemovingContact();
 
   }
 
-  private void goToGroupPageAfterAddingContact() {
+  public void removeContactFromGroup (ContactData contactData) {
+    selectContactCheckboxById(contactData.getId());
+    wd.findElement(By.name("remove")).click();
+    goToGroupPageAfterAddingRemovingContact();
+  }
+
+  private void goToGroupPageAfterAddingRemovingContact() {
     wd.findElement(By.partialLinkText("group page")).click();
     //wd.findElement(By.cssSelector(String.format("a[href='./?group=%s']", id))).click();
+  }
+
+  public void selectGroupWithContact(ContactData contactData) {
+    new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
   }
 
   public void fillContactForm(ContactData contactData, boolean creation) {
@@ -97,15 +115,6 @@ public class ContactHelper extends HelperBase {
 
   }
 
-  public void create(ContactData contact) {
-    initNewContactCreation();
-    fillContactForm(contact, true);
-    submitContactForm();
-    contactCache = null;
-    goToHomePageInConfirmation();
-
-  }
-
   public void goToHomePageInConfirmation() {
 
     //wd.findElement(By.linkText("home page")).click();
@@ -133,12 +142,12 @@ public class ContactHelper extends HelperBase {
     }
 
     contactCache = new Contacts();
-    List<WebElement> elements = wd.findElements(By.xpath(".//*[@id='maintable']/tbody/tr")); // находим все ряды таблицы
-    elements.remove(0); // удаляем заголовок таблицы, то есть первый ряд, он же первый элемент списка
+    List<WebElement> elements = wd.findElements(By.xpath(".//*[@id='maintable']/tbody/tr")); // search for all table rows
+    elements.remove(0); // remove table header, 1 row at the same time
 
     for (WebElement element: elements) {
 
-      List<WebElement> cells = element.findElements(By.tagName("td")); // создаем второй список из элементов (клеток) строки таблицы
+      List<WebElement> cells = element.findElements(By.tagName("td")); // creating second list of cells (td elements) of current table
       Integer id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       String first_name = cells.get(2).getText();
       String last_name = cells.get(1).getText();

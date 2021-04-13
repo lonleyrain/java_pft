@@ -210,13 +210,6 @@ public class ContactData {
     return this;
   }
 
- /* public String getGroup_name() {
-    return group_name;
- }
-  public ContactData withGroup_name(String group_name) {
-    this.group_name = group_name;
-    return this;
-  }*/
 
 
   @Override

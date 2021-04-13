@@ -51,12 +51,12 @@ public class ContactDeletionTests extends TestBase {
 
 
     app.goTo().HomePageInHeader();
-    Contacts before = app.db().contacts(); // список контактов до удаления  контакта
-    ContactData deletedContact = before.iterator().next(); // обращаемся к множеству через итератор и используем метод next чтобы вернуть первый попавшийся элемент множества
+    Contacts before = app.db().contacts(); // contact list before contact removal
+    ContactData deletedContact = before.iterator().next(); // iterator selects first random element of the set
     app.contact().delete(deletedContact);
     app.goTo().HomePageInHeader();
     assertThat(app.contact().count(), equalTo(before.size() - 1));
-    Contacts after = app.db().contacts(); // список контактов после удаления  контакта
+    Contacts after = app.db().contacts(); // contact list after contact removal
     assertThat(after, equalTo(before.without(deletedContact)));
     verifyContactListInUI();
 
