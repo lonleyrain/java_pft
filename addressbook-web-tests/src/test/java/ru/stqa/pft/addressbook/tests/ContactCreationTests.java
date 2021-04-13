@@ -79,7 +79,8 @@ public class ContactCreationTests extends TestBase {
     Groups groups = app.db().groups();
     app.goTo().HomePageInHeader();
     Contacts before = app.db().contacts();
-    app.contact().create(contact);
+    ContactData contactInGroup = contact.inGroup(groups.iterator().next());
+    app.contact().create(contactInGroup);
     assertThat(app.contact().count(), equalTo(before.size() + 1));
     Contacts after = app.db().contacts();
     assertThat(after, equalTo(

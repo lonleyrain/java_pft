@@ -20,7 +20,7 @@ public class ContactRemoveFromGroupTests extends TestBase{
     ContactData contactRemovedFromGroup = before.iterator().next();
     app.contact().removeContactFromGroup(contactRemovedFromGroup);
     assertThat(app.contact().count(), equalTo(before.size() - 1));
-    Contacts after = app.db().contacts(); 
+    Contacts after = app.db().contacts();
     assertThat(after, equalTo(before.without(contactRemovedFromGroup)));
     verifyContactListInUI();
 
