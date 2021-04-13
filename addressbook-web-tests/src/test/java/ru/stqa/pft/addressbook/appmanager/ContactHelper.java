@@ -65,8 +65,8 @@ public class ContactHelper extends HelperBase {
     //wd.findElement(By.cssSelector(String.format("a[href='./?group=%s']", id))).click();
   }
 
-  public void selectGroupWithContact(ContactData contactData) {
-    new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
+  public void selectGroupWithContact() {
+    new Select(wd.findElement(By.name("group"))).selectByVisibleText("NewGroupNametest1");
   }
 
   public void fillContactForm(ContactData contactData, boolean creation) {
