@@ -45,4 +45,8 @@ public class DbHelper {
     return new Contacts(result);
   }
 
+
+
+  //List<Employee> employees = session.createCriteria( Employee.class, "empl") .add(Restrictions.eq("empl.age", "15")) .list();
+
 }

@@ -58,6 +58,7 @@ public class ContactHelper extends HelperBase {
     selectContactCheckboxById(contactData.getId());
     wd.findElement(By.name("remove")).click();
     goToGroupPageAfterAddingRemovingContact();
+    contactCache = null;
   }
 
   private void goToGroupPageAfterAddingRemovingContact() {

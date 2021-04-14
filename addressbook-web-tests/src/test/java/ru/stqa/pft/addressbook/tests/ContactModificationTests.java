@@ -44,7 +44,7 @@ public class ContactModificationTests extends TestBase {
 
     app.goTo().HomePageInHeader();
 
-    /*Contacts before = app.contact().all(); // список контактов до изменения контакта (Через юай)*/
+    /*Contacts before = app.contact().all(); // сой уписок контактов до изменения контакта (Через юай)*/
     Contacts before = app.db().contacts(); // список контактов из базы данных
     ContactData modifiedContact = before.iterator().next(); // обращаемся к множеству через итератор и используем метод next чтобы вернуть первый попавшийся элемент множества
     ContactData contact = new ContactData()
