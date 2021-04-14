@@ -6,6 +6,9 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 public class ContactAddToGroupTests extends TestBase {
 
   @BeforeMethod
@@ -40,6 +43,6 @@ public class ContactAddToGroupTests extends TestBase {
     Contacts before = app.db().contacts();
     ContactData contactToBeAddedToGroup = before.iterator().next();
     app.contact().addContactToGroup(contactToBeAddedToGroup);
-    app.goTo().HomePageInHeader();
+    //app.goTo().HomePageInHeader();
   }
 }
