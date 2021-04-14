@@ -45,6 +45,15 @@ public class DbHelper {
     return new Contacts(result);
   }
 
+  public Contacts contactsInGroup () {
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    List<ContactData> result = session.createQuery( "from ContactData, GroupData where group_id = '105'" ).list();
+    session.getTransaction().commit();
+    session.close();
+    return new Contacts(result);
+  }
+
 
 
   //List<Employee> employees = session.createCriteria( Employee.class, "empl") .add(Restrictions.eq("empl.age", "15")) .list();
