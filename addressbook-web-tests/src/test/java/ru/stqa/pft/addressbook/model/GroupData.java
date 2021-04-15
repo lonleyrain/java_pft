@@ -42,8 +42,6 @@ public class GroupData {
     return new Contacts(contacts);
   }
 
-
-
   public GroupData withId(int id) {
     this.id = id;
     return this;

@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.List;
 
@@ -46,16 +47,22 @@ public class ContactHelper extends HelperBase {
     contactCache = null;
   }
 
-  public void addContactToGroup(ContactData contactData) {
+  public void addContactToGroup(ContactData contactData, GroupData groupData) {
+
+    contactCache = null;
     selectContactCheckboxById(contactData.getId());
-    new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
-    wd.findElement(By.name("add")).click();
+    selectGroupFromList(groupData.getId());
+    addToGroupButton();
     goToGroupPageAfterAddingRemovingContact();
 
   }
 
-  public void removeContactFromGroup (ContactData contactData) {
-    selectContactCheckboxById(contactData.getId());
+  private void addToGroupButton() {
+    wd.findElement(By.name("add")).click();
+  }
+
+  public void removeContactFromGroup (ContactData contact) {
+    selectContactCheckboxById(contact.getId());
     wd.findElement(By.name("remove")).click();
     goToGroupPageAfterAddingRemovingContact();
     contactCache = null;
@@ -66,8 +73,8 @@ public class ContactHelper extends HelperBase {
     //wd.findElement(By.cssSelector(String.format("a[href='./?group=%s']", id))).click();
   }
 
-  public void selectGroupWithContact() {
-    new Select(wd.findElement(By.name("group"))).selectByVisibleText("NewGroupNametest1");
+  public void selectGroupFromList (int groupId) {
+    new Select(wd.findElement(By.name("to_group"))).selectByValue(String.valueOf(groupId));
   }
 
   public void fillContactForm(ContactData contactData, boolean creation) {
