@@ -44,18 +44,57 @@ public class ContactRemoveFromGroupTests extends TestBase{
 
   public void testContactRemoveFromGroup() {
 
+    ContactData contact = selectContact();
+    GroupData groupContactToRemovedFrom = selectGroup(contact);
+    Groups before = contact.getGroups();
     app.goTo().HomePageInHeader();
-    //app.contact().selectGroupWithContact();
-    //Contacts before = app.db().contactsInGroup();
-    Contacts before = app.contact().all();
-    ContactData contactRemovedFromGroup = before.iterator().next();
-    app.contact().removeContactFromGroup(contactRemovedFromGroup);
-    assertThat(app.contact().count(), equalTo(before.size() - 1));
-    //Contacts after = app.db().contacts();
-    Contacts after = app.contact().all();
-    assertThat(after, equalTo(before.without(contactRemovedFromGroup)));
-    verifyContactListInUI();
+    app.contact().selectGroupFromList(groupContactToRemovedFrom.getId());
+    app.contact().removeContactFromGroup(contact, groupContactToRemovedFrom);
+
+    ContactData contactsAfter = selectContactById(contact);
+    Groups after = contactsAfter.getGroups();
+    assertThat(after, equalTo(before.without(groupContactToRemovedFrom)));
 
   }
 
+  private ContactData selectContactById(ContactData contact) {
+    Contacts contactsById = app.db().contacts();
+    return contactsById.iterator().next().withId(contact.getId());
+  }
+
+
+  private GroupData selectGroup(ContactData removeContact) {
+
+    ContactData contact = selectContactById(removeContact);
+    Groups removedContact = contact.getGroups();
+    return removedContact.iterator().next();
+
+  }
+
+  private ContactData selectContact() {
+    Contacts allContacts = app.db().contacts();
+    for (ContactData contact : allContacts) {
+      if (contact.getGroups().size() > 0) {
+        return contact;
+      }
+    }
+
+    ContactData addContact = app.db().contacts().iterator().next();
+    app.contact().addContactToGroup(addContact, app.db().groups().iterator().next());
+    return addContact;
+  }
+
 }
+
+
+/*app.goTo().HomePageInHeader();
+        //app.contact().selectGroupWithContact();
+        //Contacts before = app.db().contactsInGroup();
+        Contacts before = app.contact().all();
+        ContactData contactRemovedFromGroup = before.iterator().next();
+        app.contact().removeContactFromGroup(contactRemovedFromGroup);
+        assertThat(app.contact().count(), equalTo(before.size() - 1));
+        //Contacts after = app.db().contacts();
+        Contacts after = app.contact().all();
+        assertThat(after, equalTo(before.without(contactRemovedFromGroup)));
+        verifyContactListInUI();*/

@@ -61,11 +61,15 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.name("add")).click();
   }
 
-  public void removeContactFromGroup (ContactData contact) {
+  public void removeContactFromGroup (ContactData contact, GroupData groupData) {
     selectContactCheckboxById(contact.getId());
-    wd.findElement(By.name("remove")).click();
+    removeFromGroupButton();
     goToGroupPageAfterAddingRemovingContact();
     contactCache = null;
+  }
+
+  private void removeFromGroupButton() {
+    wd.findElement(By.name("remove")).click();
   }
 
   private void goToGroupPageAfterAddingRemovingContact() {
@@ -74,7 +78,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void selectGroupFromList (int groupId) {
-    new Select(wd.findElement(By.name("to_group"))).selectByValue(String.valueOf(groupId));
+    new Select(wd.findElement(By.name("group"))).selectByValue(String.valueOf(groupId));
   }
 
   public void fillContactForm(ContactData contactData, boolean creation) {
