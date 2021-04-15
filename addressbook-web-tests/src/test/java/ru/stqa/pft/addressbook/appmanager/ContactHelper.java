@@ -49,15 +49,15 @@ public class ContactHelper extends HelperBase {
 
   public void addContactToGroup(ContactData contactData, GroupData groupData) {
 
-    contactCache = null;
     selectContactCheckboxById(contactData.getId());
-    selectGroupFromList(groupData.getId());
+    selectGroupFromListToAdd(groupData.getId());
     addToGroupButton();
     goToGroupPageAfterAddingRemovingContact();
+    contactCache = null;
 
   }
 
-  private void addToGroupButton() {
+  public void addToGroupButton() {
     wd.findElement(By.name("add")).click();
   }
 
@@ -68,17 +68,21 @@ public class ContactHelper extends HelperBase {
     contactCache = null;
   }
 
-  private void removeFromGroupButton() {
+  public void removeFromGroupButton() {
     wd.findElement(By.name("remove")).click();
   }
 
-  private void goToGroupPageAfterAddingRemovingContact() {
+  public void goToGroupPageAfterAddingRemovingContact() {
     wd.findElement(By.partialLinkText("group page")).click();
     //wd.findElement(By.cssSelector(String.format("a[href='./?group=%s']", id))).click();
   }
 
   public void selectGroupFromList (int groupId) {
     new Select(wd.findElement(By.name("group"))).selectByValue(String.valueOf(groupId));
+  }
+
+  public void selectGroupFromListToAdd (int groupId) {
+    new Select(wd.findElement(By.name("to_group"))).selectByValue(String.valueOf(groupId));
   }
 
   public void fillContactForm(ContactData contactData, boolean creation) {
