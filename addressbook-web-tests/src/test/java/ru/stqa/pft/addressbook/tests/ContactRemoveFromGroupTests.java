@@ -44,13 +44,13 @@ public class ContactRemoveFromGroupTests extends TestBase{
 
   public void testContactRemoveFromGroup() {
 
+    app.goTo().HomePageInHeader();
     ContactData contact = selectContact();
     GroupData groupContactToRemovedFrom = selectGroup(contact);
     Groups before = contact.getGroups();
     app.goTo().HomePageInHeader();
     app.contact().selectGroupFromList(groupContactToRemovedFrom.getId());
     app.contact().removeContactFromGroup(contact, groupContactToRemovedFrom);
-
     ContactData contactsAfter = selectContactById(contact);
     Groups after = contactsAfter.getGroups();
     assertThat(after, equalTo(before.without(groupContactToRemovedFrom)));
@@ -66,8 +66,8 @@ public class ContactRemoveFromGroupTests extends TestBase{
   private GroupData selectGroup(ContactData removeContact) {
 
     ContactData contact = selectContactById(removeContact);
-    Groups removedContact = contact.getGroups();
-    return removedContact.iterator().next();
+    Groups contactToBeRemoved =  contact.getGroups();
+    return contactToBeRemoved.iterator().next();
 
   }
 
