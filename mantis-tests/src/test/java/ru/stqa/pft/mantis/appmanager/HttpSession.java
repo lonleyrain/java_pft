@@ -15,8 +15,8 @@ import java.util.List;
 
 public class HttpSession {
 
-  private final CloseableHttpClient httpClient;
-  private final ApplicationManager app;
+  private CloseableHttpClient httpClient;
+  private ApplicationManager app;
 
   public HttpSession(ApplicationManager app) {
     this.app = app;
@@ -24,14 +24,14 @@ public class HttpSession {
   }
 
 
-  public boolean login(String username, String password) throws IOException {
+  public boolean login (String username, String password) throws IOException {
     HttpPost post = new HttpPost (app.getProperty("web.baseUrl") + "/login.php");
     List<BasicNameValuePair> params = new ArrayList<>();
     params.add(new BasicNameValuePair ("username", username));
     params.add(new BasicNameValuePair ("password", password));
     params.add(new BasicNameValuePair ("secure_session", "on"));
     params.add(new BasicNameValuePair("return", "index.php"));
-    post.setEntity(new UrlEncodedFormEntity(params)):
+    post.setEntity(new UrlEncodedFormEntity(params));
     CloseableHttpResponse response = httpClient.execute(post);
     String body = geTextFrom(response);
     return body.contains(String.format("<span class=\"italic\">%s</span>", username));
