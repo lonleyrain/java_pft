@@ -2,8 +2,7 @@ package ru.stqa.pft.mantis.appmanager;
 
 import org.apache.commons.net.telnet.TelnetClient;
 
-import javax.mail.Session;
-import javax.mail.Store;
+import javax.mail.*;
 import java.io.InputStream;
 import java.io.PrintStream;
 
@@ -77,7 +76,7 @@ public class JamesHelper {
     write("");
 
     //read welcome message
-    readUntil("Welcome ", +login + ". HELP for a list of commands");
+    readUntil("Welcome "+login+". HELP for a list of commands");
   }
 
   private String readUntil (String pattern) {
@@ -86,7 +85,7 @@ public class JamesHelper {
       StringBuffer sb = new StringBuffer();
       char ch = (char) in.read();
       while (true) {
-        System.out.println(ch)
+        System.out.println(ch);
         sb.append(ch);
         if (ch == lastChar) {
           if (sb.toString().endsWith(pattern)){
@@ -99,6 +98,20 @@ public class JamesHelper {
       e.printStackTrace();
     }
     return null;
+  }
+
+  private void write(String value) {
+    try {
+      out.println(value);
+      out.flush();
+      System.out.println(value);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  private void closeTelnetSession() {
+    write("quit");
   }
 
 }
