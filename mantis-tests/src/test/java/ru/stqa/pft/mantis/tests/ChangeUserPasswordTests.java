@@ -49,11 +49,11 @@ public class ChangeUserPasswordTests extends TestBase {
     // 5. click users drop-down -> logout
     app.sessionHelper().appLogout();
 
-    
+
 
     long now = System.currentTimeMillis();
 
-    List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
+    List<MailMessage> mailMessages = app.mail().waitForMail(1, 60000);
 
     String confirmationLink = findConfirmationLink(mailMessages, email);
     app.registration().finish(confirmationLink, password);
