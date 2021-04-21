@@ -13,7 +13,6 @@ import java.util.List;
 public class DbHelper {
 
   private final SessionFactory sessionFactory;
-  private ApplicationManager app;
 
   public DbHelper() {
     // A SessionFactory is set up once for an application!

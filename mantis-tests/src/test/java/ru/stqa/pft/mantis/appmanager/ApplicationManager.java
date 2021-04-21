@@ -5,12 +5,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
-
-import javax.transaction.xa.XAResource;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.time.Duration;
 import java.util.Properties;
 
 public class ApplicationManager {
@@ -33,6 +30,7 @@ public class ApplicationManager {
 
     String target = System.getProperty("target", "local");
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+    dbHelper = new DbHelper();
 
   }
 
