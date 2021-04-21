@@ -18,6 +18,9 @@ public class ChangeUserPasswordTests extends TestBase {
   public void testChangeUserPassword() {
 
     Users before = app.db().users();
+    before.removeIf(user -> user.getUsername().equals("administrator"));
+    UserData userToChangePasswordFor = before.iterator().next();
+
 
 
 
