@@ -22,6 +22,7 @@ public class ApplicationManager {
   private DbHelper dbHelper;
   private SessionHelper sessionHelper;
   private NavigationHelper navigationHelper;
+  private UserHelper userHelper;
 
 
   public ApplicationManager(String browser) {
@@ -116,6 +117,13 @@ public class ApplicationManager {
       navigationHelper = new NavigationHelper(this);
     }
     return navigationHelper;
+  }
+
+  public UserHelper userHelper() {
+    if (userHelper == null) {
+      userHelper = new UserHelper(this);
+    }
+    return userHelper;
   }
 
 }
