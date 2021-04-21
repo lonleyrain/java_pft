@@ -34,7 +34,6 @@ public class ChangeUserPasswordTests extends TestBase {
     String password = "awesomePassword";
 
     // 1. login as administrator
-
     app.sessionHelper().appLogin("administrator", "root");
 
 
@@ -43,7 +42,10 @@ public class ChangeUserPasswordTests extends TestBase {
     // 2. click manage -> manage users tab
     // 3. select a user from the list by id (received from the selected user to be modifed)
     // 4. click reset password button
+
+
     // 5. click users drop-down -> logout
+    app.sessionHelper().appLogout();
 
 
 

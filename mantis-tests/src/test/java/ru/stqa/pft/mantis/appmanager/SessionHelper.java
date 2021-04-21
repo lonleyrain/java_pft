@@ -17,5 +17,9 @@ public class SessionHelper extends HelperBase {
   }
 
 
+  public void appLogout() {
 
+    click(By.className("user-info"));
+    click(By.cssSelector(String.format("a[href='/mantisbt-2.25.0/logout_page.php']")));
+  }
 }
