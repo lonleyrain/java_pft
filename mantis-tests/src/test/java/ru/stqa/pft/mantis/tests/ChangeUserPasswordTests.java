@@ -11,6 +11,7 @@ import ru.stqa.pft.mantis.model.Users;
 import javax.mail.MessagingException;
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.testng.Assert.assertTrue;
 
@@ -20,6 +21,19 @@ public class ChangeUserPasswordTests extends TestBase {
   public void startMailServer() {
     app.mail().start();
   }
+
+ /* public void ensurePreconditions() {
+
+    if (app.db().users().stream().filter(user -> !user.getUsername()
+            .equals("administrator")).collect(Collectors.toList()).size() == 0) {
+      if (app.db().users().size() == 0) {
+        app.userHelper().initUserCreation();
+        app.userHelper().fillNewUserForm(new UserData().withUsername("test").withEmail("test@mail.com"));
+        app.userHelper().sumbitUserCreation();
+      }
+    }
+
+  }*/
 
   @Test
 
