@@ -25,7 +25,7 @@ public class RegistrationTests extends TestBase {
 
     long now = System.currentTimeMillis();
 
-    String email = String.format("user%s@localhost.localdomain", now);
+    String email = String.format("user%s@localhost", now);
     String user = String.format("user%s", now);
     String password = "password";
 
