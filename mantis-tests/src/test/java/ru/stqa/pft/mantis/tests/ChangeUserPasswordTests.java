@@ -45,16 +45,12 @@ public class ChangeUserPasswordTests extends TestBase {
     // 4. click reset password button
     app.userHelper().resetPassword();
 
-
     // 5. click users drop-down -> logout
     app.sessionHelper().appLogout();
 
 
-
     long now = System.currentTimeMillis();
-
     List<MailMessage> mailMessages = app.mail().waitForMail(1, 60000);
-
     String confirmationLink = findConfirmationLink(mailMessages, email);
     app.registration().finish(confirmationLink, password);
     assertTrue(app.newSession().login(user, password));
