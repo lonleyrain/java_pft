@@ -82,11 +82,11 @@ public class JamesHelper {
     readUntil("Password");
     write(password);
 
-    //second
+    /*//second
     readUntil("Login id:");
     write(login);
     readUntil("Password");
-    write(password);
+    write(password);*/
 
     //read welcome message
     readUntil("Welcome "+login+". HELP for a list of commands");
@@ -98,7 +98,7 @@ public class JamesHelper {
       StringBuffer sb = new StringBuffer();
       char ch = (char) in.read();
       while (true) {
-        System.out.println(ch);
+        System.out.print(ch);
         sb.append(ch);
         if (ch == lastChar) {
           if (sb.toString().endsWith(pattern)){
