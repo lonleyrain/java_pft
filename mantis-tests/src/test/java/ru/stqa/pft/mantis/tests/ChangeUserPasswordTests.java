@@ -49,16 +49,12 @@ public class ChangeUserPasswordTests extends TestBase {
 
     // 1. login as administrator
     app.sessionHelper().appLogin("administrator", "root");
-
     // 2. click manage -> manage users tab
     app.goTo().manageTab();
-
     // 3. select a user from the list by id (received from the selected user to be modifed)
     app.userHelper().selectUserById(userToChangePasswordFor.getId());
-
     // 4. click reset password button
     app.userHelper().resetPassword();
-
     // 5. click users drop-down -> logout
     app.sessionHelper().appLogout();
 
