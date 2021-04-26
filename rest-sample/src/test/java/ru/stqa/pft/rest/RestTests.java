@@ -4,50 +4,40 @@ import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import model.Issue;
 import org.apache.http.client.fluent.Executor;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.message.BasicNameValuePair;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.rmi.RemoteException;
 import java.util.Set;
 
 import static org.testng.Assert.assertEquals;
 
-public class RestTests {
+public class RestTests extends TestBase{
+
+  @BeforeMethod
+  public void checkIfIssueIsFixed() throws IOException {
+    skipIfNotFixed(1);
+  }
 
   @Test
 
   public void testCreateIssue() throws IOException {
-    Set<Issue> oldIssues = getIssues();
-    Issue newIssue = new Issue().withSubject("awesome sugject").withDescription("awesome description");
-    int issueId = createIssue(newIssue);
-    Set<Issue> newIssues = getIssues();
+    Set<Issue> oldIssues = app.restHelper().getIssues();
+    Issue newIssue = new Issue().withSubject("awesome subject").withDescription("awesome description");
+    int issueId = app.restHelper().createIssue(newIssue);
+    Set<Issue> newIssues = app.restHelper().getIssues();
     oldIssues.add(newIssue.withId(issueId));
     assertEquals(newIssues, oldIssues);
 
   }
 
-  private Set<Issue> getIssues() throws IOException {
-    String json = getExecutor().execute(Request.Get("https://bugify.stqa.ru/api/issues.json"))
-            .returnContent().asString();
-    JsonElement parsedListOfIssues = new JsonParser().parse(json);
-    JsonElement issues = parsedListOfIssues.getAsJsonObject().get("issues");
 
-    return new Gson().fromJson(issues, new TypeToken<Set<Issue>>(){}.getType());
-  }
 
-  private Executor getExecutor() {
-    return Executor.newInstance().auth("288f44776e7bec4bf44fdfeb1e646490", "");
-  }
 
-  private int createIssue(Issue newIssue) throws IOException {
-
-    String json = getExecutor().execute(Request.Post("https://bugify.stqa.ru/api/issues.json")
-            .bodyForm(new BasicNameValuePair("subject", newIssue.getSubject())
-                    , new BasicNameValuePair("description", newIssue.getDescription())))
-            .returnContent().asString();
-    JsonElement parsed = new JsonParser().parse(json);
-    return parsed.getAsJsonObject().get("issue_id").getAsInt();
-  }
 }

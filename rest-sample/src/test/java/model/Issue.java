@@ -1,4 +1,4 @@
-package ru.stqa.pft.rest;
+package model;
 
 public class Issue {
 
