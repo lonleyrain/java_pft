@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import model.Issue;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.fluent.Executor;
 import org.apache.http.client.fluent.Request;
 import org.testng.SkipException;
@@ -32,10 +33,9 @@ public class TestBase {
             .returnContent().asString();
     JsonElement parsed = new JsonParser().parse(json);
     JsonElement issue_data = parsed.getAsJsonObject().get("issues");
-
-    JsonElement issue_status = issue_data.getAsJsonObject().get("issue_state");
-    return new Gson().fromJson(issue_status, new TypeToken<Set<Issue>>(){}.getType()); //!issues.getStatus().getName().equals("closed");
-
+    JsonElement obj= issue_data .getAsJsonArray().get(0);
+    String issue_status = obj.getAsJsonObject().get("state_name").getAsString();
+    return !issue_status.equals("Closed");
   }
 
   public void skipIfNotFixed(int issueId) throws IOException {
