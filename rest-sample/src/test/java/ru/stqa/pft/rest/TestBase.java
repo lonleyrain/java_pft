@@ -1,26 +1,25 @@
 package ru.stqa.pft.rest;
 
 import appmanager.ApplicationManager;
-import com.google.common.reflect.TypeToken;
-import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import model.Issue;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.fluent.Executor;
 import org.apache.http.client.fluent.Request;
 import org.testng.SkipException;
+import org.testng.annotations.BeforeSuite;
 
 import java.io.IOException;
-import java.io.Reader;
-import java.net.MalformedURLException;
-import java.rmi.RemoteException;
-import java.util.Set;
+
 
 public class TestBase {
 
   protected static final ApplicationManager app
           = new ApplicationManager();
+
+  @BeforeSuite(alwaysRun = true)
+  public void setUp() throws Exception {
+    app.init();
+  }
 
 
   public Executor getExecutor() {
@@ -29,7 +28,7 @@ public class TestBase {
 
   boolean isIssueOpen(int issueId) throws IOException {
 
-    String json = getExecutor().execute(Request.Get("https://bugify.stqa.ru/api/issues/"+issueId+".json"))
+    String json = getExecutor().execute(Request.Get(app.getProperty("rest.baseUrl")+issueId+".json"))
             .returnContent().asString();
     JsonElement parsed = new JsonParser().parse(json);
     JsonElement issue_data = parsed.getAsJsonObject().get("issues");
