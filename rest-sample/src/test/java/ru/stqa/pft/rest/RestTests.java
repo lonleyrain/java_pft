@@ -20,7 +20,7 @@ import static org.testng.Assert.assertEquals;
 
 public class RestTests extends TestBase{
 
-  @BeforeMethod
+ @BeforeMethod
   public void checkIfIssueIsFixed() throws IOException {
     skipIfNotFixed(1);
   }
