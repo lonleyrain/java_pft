@@ -2,8 +2,8 @@ package ru.stqa.pft.sandbox;
 
 public class Rectangle {
 
-  public double a; // длина стороны прямоугольника
-  public double b; // ширина стороны прямоугольника
+  public double a;
+  public double b;
 
   public Rectangle(double a, double b){
     this.a = a;

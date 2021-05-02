@@ -6,7 +6,7 @@ public class Equation {
   private double b;
   private double c;
 
-  private int n; // количество корней уравнения
+  private int n;
 
   public Equation (double a, double b, double c) {
     this.a = a;
