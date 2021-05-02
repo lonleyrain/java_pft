@@ -29,5 +29,4 @@ public class ApplicationManager {
   public String getProperty(String key) {
     return properties.getProperty(key);
   }
-
 }
