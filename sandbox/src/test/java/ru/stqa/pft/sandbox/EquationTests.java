@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 public class EquationTests {
 
-  // тесты для ситуации , когда уравнение не имеет решений
+  // no solution
 
   @Test
   public void test0(){
@@ -15,7 +15,7 @@ public class EquationTests {
 
   }
 
-  // тесты для ситуации , когда уравнение имеет 1 решение
+  // 1 solution
 
   @Test
   public void test1(){
@@ -25,7 +25,7 @@ public class EquationTests {
 
   }
 
-  // тесты для ситуации , когда уравнение имеет 2 решения
+  // 2 solutions
 
   @Test
   public void test2(){
@@ -35,7 +35,7 @@ public class EquationTests {
 
   }
 
-  // тесты для ситуации , когда уравнение линейно
+  // linear
 
   @Test
   public void testLinear(){
@@ -46,8 +46,6 @@ public class EquationTests {
   }
 
 
-  // тесты для ситуации , когда уравнение вырождается в константу
-
   @Test
   public void testConstant(){
 
@@ -56,7 +54,6 @@ public class EquationTests {
 
   }
 
-  // тесты для ситуации , когда все переменные нули
 
   @Test
   public void testZero(){
