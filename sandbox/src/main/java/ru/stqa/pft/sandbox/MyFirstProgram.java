@@ -8,10 +8,10 @@ public class MyFirstProgram {
         hello("Anastasiya");
 
         Square s = new Square(5);
-        System.out.println("Площадь квадрата " + s.l + " = " + s.area());
+        System.out.println("Sqare square " + s.l + " = " + s.area());
 
         Rectangle r = new Rectangle(4, 6);
-        System.out.println("Площадь прямоугольника " + r.a + " и " + r.b + " = " + r.area());
+        System.out.println("Square rectangle " + r.a + " и " + r.b + " = " + r.area());
 
     }
 
