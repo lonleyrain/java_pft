@@ -33,9 +33,9 @@ public class GroupModificationTests extends TestBase {
   public void testGroupModification() {
 
 
-    /*Groups before = app.group().all(); // список групп до изменения группы (через юай)*/
-    Groups before = app.db().groups(); // список групп из базы данных
-    GroupData modifiedGroup = before.iterator().next(); // обращаемся к множеству через итератор и используем метод next чтобы вернуть первый попавшийся элемент множества
+    /*Groups before = app.group().all(); // */
+    Groups before = app.db().groups(); //
+    GroupData modifiedGroup = before.iterator().next(); //
 
     GroupData group = new GroupData()
             .withId(modifiedGroup.getId())
@@ -45,8 +45,8 @@ public class GroupModificationTests extends TestBase {
     app.goTo().GroupPage();
     app.group().modify(group);
     assertThat(app.group().count(), equalTo(before.size()));
-    /*Groups after = app.group().all(); // список групп после изменения группы*/
-    Groups after = app.db().groups(); // список групп из базы данных
+    /*Groups after = app.group().all(); // */
+    Groups after = app.db().groups(); //
     assertThat(after, equalTo(before.without(modifiedGroup).withAdded(group)));
     verifyGroupListInUI();
 

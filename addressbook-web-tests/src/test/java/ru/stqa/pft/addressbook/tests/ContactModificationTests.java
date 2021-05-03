@@ -44,9 +44,9 @@ public class ContactModificationTests extends TestBase {
 
     app.goTo().HomePageInHeader();
 
-    /*Contacts before = app.contact().all(); // сой уписок контактов до изменения контакта (Через юай)*/
-    Contacts before = app.db().contacts(); // список контактов из базы данных
-    ContactData modifiedContact = before.iterator().next(); // обращаемся к множеству через итератор и используем метод next чтобы вернуть первый попавшийся элемент множества
+
+    Contacts before = app.db().contacts();
+    ContactData modifiedContact = before.iterator().next();
     ContactData contact = new ContactData()
             .withId(modifiedContact.getId())
             .withFirst_name("Updated name")
@@ -57,8 +57,8 @@ public class ContactModificationTests extends TestBase {
     app.contact().modify(contact);
     app.goTo().HomePageInHeader();
     assertThat(app.contact().count(), equalTo(before.size() ));
-    /*Contacts after = app.contact().all(); // список контактов после изменения контакта*/
-    Contacts after = app.db().contacts(); // список контактов из базы данных
+    /*Contacts after = app.contact().all();*/
+    Contacts after = app.db().contacts();
     assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
 
     verifyContactListInUI();

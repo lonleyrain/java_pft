@@ -32,9 +32,6 @@ public class NavigationHelper extends HelperBase {
   }
 }
 
-/*&& означаеет "и" в моменте перечисления условий
-* || означает "или"
-* */
 
 //div[@id='nav']/ul[1]/li[1]/a[1]    By.id("maintable")
 

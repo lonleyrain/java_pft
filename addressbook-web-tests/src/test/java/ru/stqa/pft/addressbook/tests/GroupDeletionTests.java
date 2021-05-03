@@ -33,11 +33,11 @@ public class GroupDeletionTests extends TestBase {
   public void testGroupDeletion() throws Exception {
 
     app.goTo().GroupPage();
-    Groups before = app.db().groups(); // список групп до удаления группы, взятый из базы данных
-    GroupData deletedGroup = before.iterator().next(); // обращаемся к множеству через итератор и используем метод next чтобы вернуть первый попавшийся элемент множества
+    Groups before = app.db().groups(); //
+    GroupData deletedGroup = before.iterator().next(); //
     app.group().delete(deletedGroup);
     assertThat(app.group().count(), equalTo(before.size() - 1));
-    Groups after = app.db().groups(); // список групп после удаления группы, взятый из базы данных
+    Groups after = app.db().groups(); //
     assertThat(after, equalTo(before.without(deletedGroup)));
     verifyGroupListInUI();
 

@@ -62,12 +62,12 @@ public class GroupCreationTests extends TestBase {
   public void testGroupCreation(GroupData group) throws Exception {
 
     app.goTo().GroupPage();
-    Groups before = app.db().groups(); // список групп до добавления новой группы, взятый из базы данных
+    Groups before = app.db().groups();
     app.group().create(group);
     assertThat(app.group().count(), equalTo(before.size() +1));
     app.goTo().GroupPage();
-    Groups after = app.db().groups(); // список групп после добавления новой группы, взятый из базы данных
-    // group.setId(after.stream().max((Comparator<GroupData>) (o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId()); вычисляется максимальный айди
+    Groups after = app.db().groups();
+    // group.setId(after.stream().max((Comparator<GroupData>) (o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
     assertThat(after, equalTo(
             before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
     verifyGroupListInUI();
@@ -80,16 +80,16 @@ public class GroupCreationTests extends TestBase {
 
 
     app.goTo().GroupPage();
-    Groups before = app.group().all(); // список групп до добавления новой группы
+    Groups before = app.group().all();
     GroupData group = new GroupData().withName("test2'");
     app.group().create(group);
     assertThat(app.group().count(), equalTo(before.size()));
-    Groups after = app.group().all(); // список групп после добавления новой группы
+    Groups after = app.group().all();
 
 
 
 
-    // group.setId(after.stream().max((Comparator<GroupData>) (o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId()); вычисляется максимальный айди
+    // group.setId(after.stream().max((Comparator<GroupData>) (o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
 
 
     assertThat(after, equalTo(before));
