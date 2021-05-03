@@ -55,7 +55,7 @@ public class ApplicationManager {
       wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
     }
 
-    wd.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+    wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
     wd.get(properties.getProperty("web.baseUrl"));
     contactHelper = new ContactHelper(wd);
     groupHelper = new GroupHelper(wd);
