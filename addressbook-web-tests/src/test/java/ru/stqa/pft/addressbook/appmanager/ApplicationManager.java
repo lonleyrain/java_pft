@@ -43,10 +43,8 @@ public class ApplicationManager {
     if ("".equals(properties.getProperty("selenium.server"))) {
       if (browser.equals(BrowserType.FIREFOX)) {
         wd = new FirefoxDriver();
-
       } else if (browser.equals(BrowserType.CHROME)) {
         wd = new ChromeDriver();
-
       } else if (browser.equals(BrowserType.IE)) {
         wd = new InternetExplorerDriver();
       }
@@ -55,9 +53,6 @@ public class ApplicationManager {
       capabilities.setBrowserName(browser);
       wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
     }
-
-
-
 
     wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
     wd.get(properties.getProperty("web.baseUrl"));

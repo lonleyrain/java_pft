@@ -4,12 +4,12 @@
 
     <test name="Contacts">
         <classes>
-            <class name="ru.stqa.pft.addressbook.ru.stqa.pft.mantis.tests.ContactCreationTests"/>
-            <class name="ru.stqa.pft.addressbook.ru.stqa.pft.mantis.tests.ContactModificationTests"/>
-            <class name="ru.stqa.pft.addressbook.ru.stqa.pft.mantis.tests.ContactDeletionTests"/>
-            <class name="ru.stqa.pft.addressbook.ru.stqa.pft.mantis.tests.ContactPhoneTests"/>
-            <class name="ru.stqa.pft.addressbook.ru.stqa.pft.mantis.tests.ContactAddToGroupTests"/>
-            <class name="ru.stqa.pft.addressbook.ru.stqa.pft.mantis.tests.ContactRemoveFromGroupTests"/>
+            <class name="ru.stqa.pft.addressbook.tests.ContactCreationTests"/>
+            <class name="ru.stqa.pft.addressbook.tests.ContactModificationTests"/>
+            <class name="ru.stqa.pft.addressbook.tests.ContactDeletionTests"/>
+            <class name="ru.stqa.pft.addressbook.tests.ContactPhoneTests"/>
+            <class name="ru.stqa.pft.addressbook.tests.ContactAddToGroupTests"/>
+            <class name="ru.stqa.pft.addressbook.tests.ContactRemoveFromGroupTests"/>
         </classes>
     </test>
 </suite>
