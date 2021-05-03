@@ -1,0 +1,23 @@
+[
+  {
+    "first_name": "New Contact First Name0",
+    "last_name": "New Contact Last Name0",
+    "mobilePhone": "375290000000",
+    "email": "test_email@test0",
+    "photo": "src\\test\\resources\\stru.png"
+  },
+  {
+    "first_name": "New Contact First Name1",
+    "last_name": "New Contact Last Name1",
+    "mobilePhone": "375290000001",
+    "email": "test_email@test1",
+    "photo": "src\\test\\resources\\stru.png"
+  },
+  {
+    "first_name": "New Contact First Name2",
+    "last_name": "New Contact Last Name2",
+    "mobilePhone": "375290000002",
+    "email": "test_email@test2",
+    "photo": "src\\test\\resources\\stru.png"
+  }
+]

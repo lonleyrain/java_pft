@@ -1,17 +1,17 @@
 [
   {
-    "name": "test0",
-    "header": "header0",
-    "footer": "footer0"
+    "name": "NewGroupNametest0",
+    "header": "NewGroupHeader0",
+    "footer": "NewGroupFooter0"
   },
   {
-    "name": "test1",
-    "header": "header1",
-    "footer": "footer1"
+    "name": "NewGroupNametest1",
+    "header": "NewGroupHeader1",
+    "footer": "NewGroupFooter1"
   },
   {
-    "name": "test2",
-    "header": "header2",
-    "footer": "footer2"
+    "name": "NewGroupNametest2",
+    "header": "NewGroupHeader2",
+    "footer": "NewGroupFooter2"
   }
 ]

@@ -8,6 +8,8 @@
             <class name="ru.stqa.pft.addressbook.ru.stqa.pft.mantis.tests.ContactModificationTests"/>
             <class name="ru.stqa.pft.addressbook.ru.stqa.pft.mantis.tests.ContactDeletionTests"/>
             <class name="ru.stqa.pft.addressbook.ru.stqa.pft.mantis.tests.ContactPhoneTests"/>
+            <class name="ru.stqa.pft.addressbook.ru.stqa.pft.mantis.tests.ContactAddToGroupTests"/>
+            <class name="ru.stqa.pft.addressbook.ru.stqa.pft.mantis.tests.ContactRemoveFromGroupTests"/>
         </classes>
     </test>
 </suite>
