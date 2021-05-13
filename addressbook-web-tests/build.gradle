@@ -17,12 +17,16 @@ dependencies {
     implementation 'org.hibernate:hibernate-core:5.4.30.Final'
 }
 
+
 task testGroups (type : Test) {
     useTestNG {
         suites 'src/test/resources/testng-groups.xml'
     }
     if (project.hasProperty('browser')) {
         systemProperty 'browser', "${browser}"
+    }
+    if (project.hasProperty('platform')) {
+        systemProperty 'platform', "${platform}"
     }
     if (project.hasProperty('target')) {
         systemProperty 'target', "${target}"
@@ -40,6 +44,9 @@ task testContacts (type : Test) {
     if (project.hasProperty('browser')) {
         systemProperty 'browser', "${browser}"
     }
+    if (project.hasProperty('platform')) {
+        systemProperty 'platform', "${platform}"
+    }
     if (project.hasProperty('target')) {
         systemProperty 'target', "${target}"
     }
@@ -49,6 +56,14 @@ task testContacts (type : Test) {
     }
 
 }
+
+task rf(type: JavaExec) {
+    main = 'org.robotframework.RobotFramework'
+    classpath = sourceSets.test.runtimeClasspath
+    args '--outputdir', 'build/rf-report'
+    args 'src/test/resources/rf'
+}
+
 
 
 /*
